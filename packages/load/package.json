@@ -1,0 +1,29 @@
+{
+  "name": "@zeus/load",
+  "version": "0.0.1-alpha.0",
+  "description": "The loader for Zeus.",
+  "author": "Mike Stemle <mike.stemle@washpost.com>",
+  "homepage": "https://github.com/WPMedia/zeus-react-public#readme",
+  "license": "Apache-2.0",
+  "main": "lib/load.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WPMedia/zeus-react-public.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/WPMedia/zeus-react-public/issues"
+  },
+  "dependencies": {
+    "react": "^16.9.0"
+  }
+}

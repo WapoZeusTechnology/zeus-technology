@@ -9,6 +9,7 @@
   "workspaces": [
     "packages/*"
   ],
+  "private": true,
   "dependencies": {
     "lerna": "^3.16.4"
   }

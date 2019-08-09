@@ -7,6 +7,9 @@
   "homepage": "https://github.com/WPMedia/zeus-react-public#readme",
   "license": "Apache-2.0",
   "main": "lib/load.js",
+  "publishConfig": {
+    "access": "public"
+  },
   "directories": {
     "lib": "lib",
     "test": "__tests__"
@@ -27,5 +30,5 @@
   "dependencies": {
     "react": "^16.9.0"
   },
-  "gitHead": "8a55bfcdbcc93865554878e3040eca6f27bd7bfd"
+  "gitHead": "ff0415de7517fbd4af072c984b4f8e4d4ff2a493"
 }

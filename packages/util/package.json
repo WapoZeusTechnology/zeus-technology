@@ -1,5 +1,5 @@
 {
-  "name": "@zeus/util",
+  "name": "@zeus-platform/util",
   "version": "0.0.1-alpha.1",
   "description": "Various utility components for Zeus React components.",
   "author": "Mike Stemle <mike.stemle@washpost.com>",

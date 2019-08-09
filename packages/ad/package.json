@@ -1,5 +1,5 @@
 {
-  "name": "@zeus/ad",
+  "name": "@zeus-platform/ad",
   "version": "0.0.1-alpha.1",
   "description": "The Ad slot component for Zeus",
   "author": "Mike Stemle <mike.stemle@washpost.com>",

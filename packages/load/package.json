@@ -1,5 +1,6 @@
 {
   "name": "@zeus-platform/load",
+  "private": false,
   "version": "0.0.1-alpha.2",
   "description": "The loader for Zeus.",
   "author": "Mike Stemle <mike.stemle@washpost.com>",
@@ -25,5 +26,6 @@
   },
   "dependencies": {
     "react": "^16.9.0"
-  }
+  },
+  "gitHead": "f00d301806b5ab17c3309d2eb88a17e7d4d2fbb0"
 }

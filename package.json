@@ -5,8 +5,7 @@
   "main": "index.js",
   "repository": "git@github.com:WPMedia/zeus-react-public.git",
   "author": "Mike Stemle <mike.stemle@washpost.com>",
-  "license": "APACHE-2.0",
-  "private": true,
+  "license": "Apache-2.0",
   "workspaces": [
     "packages/*"
   ],

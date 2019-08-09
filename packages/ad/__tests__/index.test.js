@@ -1,14 +1,12 @@
 "use strict";
 
 import React from "react";
-import { ZeusLoader } from "@zeus-platform/load";
+import { ZeusAd } from "@zeus-platform/ad";
 import renderer from "react-test-renderer";
 
-describe("@zeus-platform/load", () => {
+describe("@zeus-platform/ad", () => {
   it("Should render and match snapshot", () => {
-    const sample = renderer.create(
-      <ZeusLoader url="https://test.zeustechnology.com" />
-    );
+    const sample = renderer.create(<ZeusAd slotId="sample0" />);
     expect(sample.toJSON()).toMatchSnapshot();
   });
 });

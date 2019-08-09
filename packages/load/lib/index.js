@@ -1,5 +1,5 @@
-import { Fragment, useState } from "react";
-import { zeusNotice } from "@zeus/util";
+import React, { Fragment } from "react";
+import { zeusNotice } from "@zeus-platform/util";
 
 /**
  * This internal component is used by the ZeusLoader to perform the loading of the remote Zeus script.
@@ -13,7 +13,7 @@ import { zeusNotice } from "@zeus/util";
  */
 export const ZeusLoader = ({ url, keyValuePairs = [], children = null }) => {
   // A safety to make sure we don't run this more than once.
-  if (document.getElementById("____zeus_script")) return;
+  if (document.getElementById("____zeus_script")) return <Fragment />;
 
   // Notify the console so that we know that it's happening.
   zeusNotice("Loading the Zeus Loader");
@@ -37,10 +37,10 @@ export const ZeusLoader = ({ url, keyValuePairs = [], children = null }) => {
   newScript.id = "____zeus_script";
   newScript.async = true;
   newScript.onload = () => {
-    children();
+    childFunction();
   };
   document.head.appendChild(newScript);
 
   // This never actually has any meaningful output, it does all of its business in the document head.
-  return null;
+  return <Fragment />;
 };

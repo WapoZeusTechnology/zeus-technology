@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`@zeus-platform/ad Should render and match snapshot 1`] = `
+<div
+  style={
+    Object {
+      "border": "10px solid red",
+    }
+  }
+>
+  <zeus-ad
+    id="sample0"
+    slotId="sample0"
+  />
+</div>
+`;

@@ -6,7 +6,7 @@
   "author": "Mike Stemle <mike.stemle@washpost.com>",
   "homepage": "https://github.com/WPMedia/zeus-react-public#readme",
   "license": "Apache-2.0",
-  "main": "lib/load.js",
+  "main": "lib/index.js",
   "publishConfig": {
     "access": "public"
   },
@@ -22,7 +22,7 @@
     "url": "git+https://github.com/WPMedia/zeus-react-public.git"
   },
   "scripts": {
-    "test": "echo \"Error: run tests from root\" && exit 1"
+    "test": "jest"
   },
   "bugs": {
     "url": "https://github.com/WPMedia/zeus-react-public/issues"
@@ -30,5 +30,12 @@
   "dependencies": {
     "react": "^16.9.0"
   },
-  "gitHead": "9b616b9ec781355628c00fd84f32b66114ace069"
+  "gitHead": "9b616b9ec781355628c00fd84f32b66114ace069",
+  "devDependencies": {
+    "@babel/preset-env": "^7.5.5",
+    "@babel/preset-react": "^7.0.0",
+    "babel-jest": "^24.8.0",
+    "jest": "^24.8.0",
+    "react-test-renderer": "^16.9.0"
+  }
 }

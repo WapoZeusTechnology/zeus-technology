@@ -33,7 +33,7 @@
   "dependencies": {
     "react": "^16.9.0"
   },
-  "gitHead": "9b616b9ec781355628c00fd84f32b66114ace069",
+  "gitHead": "6153db10a74a5fef4b1197d30256eecebb45a248",
   "devDependencies": {
     "@babel/cli": "^7.5.5",
     "@babel/core": "^7.5.5",

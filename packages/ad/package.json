@@ -6,7 +6,7 @@
   "author": "Mike Stemle <mike.stemle@washpost.com>",
   "homepage": "https://github.com/WPMedia/zeus-react-public#readme",
   "license": "Apache-2.0",
-  "main": "dist/lib/index.js",
+  "main": "lib/index.js",
   "publishConfig": {
     "directory": "dist",
     "access": "public"

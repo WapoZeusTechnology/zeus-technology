@@ -1,7 +1,7 @@
 {
   "name": "@zeus-platform/util",
   "private": false,
-  "version": "0.1.6-alpha.0",
+  "version": "0.1.6-alpha.2",
   "description": "Various utility components for Zeus React components.",
   "author": "Mike Stemle <mike.stemle@washpost.com>",
   "homepage": "https://github.com/WPMedia/zeus-react-public#readme",

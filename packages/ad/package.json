@@ -1,7 +1,7 @@
 {
   "name": "@zeus-platform/ad",
   "private": false,
-  "version": "0.1.6-alpha.1",
+  "version": "0.1.5",
   "description": "The Ad slot component for Zeus",
   "author": "Mike Stemle <mike.stemle@washpost.com>",
   "homepage": "https://github.com/WPMedia/zeus-react-public#readme",

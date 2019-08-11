@@ -22,6 +22,11 @@ pipeline{
                 sh "env"
             }
         }
+        stage("Yarn"){
+          steps{
+            sh "yarn"
+          }
+        }
         stage("Bootstrap"){
           steps{
             sh "./node_modules/.bin/lerna bootstrap"

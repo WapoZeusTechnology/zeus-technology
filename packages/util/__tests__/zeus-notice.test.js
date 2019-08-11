@@ -1,6 +1,6 @@
 "use strict";
 
-import { zeusNotice } from "@zeus-platform/util";
+import { zeusNotice } from "../lib";
 
 const mockLog = jest.fn();
 

@@ -1,7 +1,7 @@
 "use strict";
 
 import React from "react";
-import { ZeusLoader } from "@zeus-platform/load";
+import { ZeusLoader } from "../lib";
 import renderer from "react-test-renderer";
 
 describe("@zeus-platform/load", () => {

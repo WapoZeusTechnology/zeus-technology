@@ -12,7 +12,7 @@
     "access": "public"
   },
   "directories": {
-    "lib": "lib",
+    "lib": "dist",
     "test": "__tests__"
   },
   "files": [

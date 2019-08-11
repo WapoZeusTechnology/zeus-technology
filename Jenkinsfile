@@ -29,23 +29,23 @@ pipeline{
         }
         stage("Bootstrap"){
           steps{
-            sh "./node_modules/.bin/lerna bootstrap"
+            sh "lerna bootstrap"
           }
         }
         stage("Test"){
           steps{
-            sh "./node_modules/.bin/lerna run test"
+            sh "lerna run test"
           }
         }
         stage("Build"){
           steps{
-            sh "./node_modules/.bin/lerna run build"
+            sh "lerna run build"
           }
         }
 
         stage("Deploy"){
           steps{
-            sh "./node_modules/.bin/lerna deploy ${params.BUILD_TYPE}"
+            sh "lerna deploy ${params.BUILD_TYPE}"
           }
         }
     }

@@ -31,13 +31,5 @@
     "url": "https://github.com/WPMedia/zeus-react-public/issues"
   },
   "gitHead": "6153db10a74a5fef4b1197d30256eecebb45a248",
-  "devDependencies": {
-    "@babel/cli": "^7.5.5",
-    "@babel/core": "^7.5.5",
-    "@babel/preset-env": "^7.5.5",
-    "@babel/preset-react": "^7.0.0",
-    "babel-jest": "^24.8.0",
-    "jest": "^24.8.0",
-    "react-test-renderer": "^16.9.0"
-  }
+  "devDependencies": {}
 }

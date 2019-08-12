@@ -20,11 +20,9 @@ pipeline{
         stage("Verbose"){
             steps{
                 sh "env"
-                script{
-                   withCredentials([[$class: "UsernamePasswordMultiBinding", usernameVariable: 'GITHUB_USER', passwordVariable: 'GITHUB_PASS', credentialsId: 'infbot-bigdata']]) {
-                    sh 'git remote add origin https://${GITHUB_USER}:{GITHUB_PASSWORD}@github.com/WPMedia/zeus-platform.git'
-                  }
-                }
+                sh "git config user.email infbot-bigdata@washpost.com"
+                sh "git config user.name 'Jenkins Bot'"
+                sh "git remote update"
             }
         }
         stage("Yarn"){

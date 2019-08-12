@@ -5,9 +5,5 @@ import React from "react";
  * @param {string} props.slotId The ID of the inventory slot.
  */
 export const ZeusAd = props => {
-  return (
-    <div style={{ border: "10px solid red" }}>
-      <zeus-ad id={props.slotId} {...props} />
-    </div>
-  );
+  return <zeus-ad id={props.slotId} {...props} />;
 };

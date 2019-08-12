@@ -20,6 +20,7 @@ pipeline{
         stage("Verbose"){
             steps{
                 sh "env"
+                sh "git remote update"
             }
         }
         stage("Yarn"){

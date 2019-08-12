@@ -45,7 +45,7 @@ pipeline{
 
         stage("Deploy"){
           steps{
-            sh "lerna deploy ${params.BUILD_TYPE}"
+            sh "lerna publish ${params.BUILD_TYPE}"
           }
         }
     }

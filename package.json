@@ -11,6 +11,7 @@
   ],
   "private": true,
   "dependencies": {
+    "@babel/preset-env": "^7.5.5",
     "jest-config": "^24.8.0",
     "lerna": "^3.16.4"
   }

@@ -10,9 +10,6 @@ pipeline{
     triggers{
         pollSCM("H/2 * * * *")
     }
-    parameters{
-        choice(name:"BUILD_TYPE", choices:['prerelease','patch','minor','major','from-package'], description:"Choose which release type you'd like")
-    }
     environment{
         NODE_ENV="production"
     }
@@ -20,9 +17,6 @@ pipeline{
         stage("Verbose"){
             steps{
                 sh "env"
-                sh "git config user.email infbot-bigdata@washpost.com"
-                sh "git config user.name 'Jenkins Bot'"
-                sh "git remote update"
             }
         }
         stage("Yarn"){
@@ -35,20 +29,14 @@ pipeline{
             sh "lerna bootstrap"
           }
         }
-        stage("Test"){
-          steps{
-            sh "lerna run test"
-          }
-        }
         stage("Build"){
           steps{
             sh "lerna run build"
           }
         }
-
-        stage("Deploy"){
+        stage("Test"){
           steps{
-            sh "lerna publish ${params.BUILD_TYPE}"
+            sh "lerna run test"
           }
         }
     }

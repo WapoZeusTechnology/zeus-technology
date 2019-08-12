@@ -21,6 +21,11 @@ pipeline{
             steps{
                 sh "env"
                 sh "git remote update"
+                script{
+                   withCredentials([[$class: "UsernamePasswordMultiBinding", usernameVariable: 'GITHUB_USER', passwordVariable: 'GITHUB_PASS', credentialsId: 'infbot-bigdata']]) {
+                    sh 'git remote add origin https://${GITHUB_USER}:{GITHUB_PASSWORD}@github.com/WPMedia/zeus-platform.git'
+                  }
+                }
             }
         }
         stage("Yarn"){

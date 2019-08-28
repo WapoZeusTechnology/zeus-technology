@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import { zeusNotice } from "@zeus-platform/util";
 
 /**
- * This internal component is used by the ZeusLoader to perform the loading of the remote Zeus script.
+ * This component performs the loading of the remote Zeus script.
  * @param {Object} props The properties passed to the component
  * @param {string} props.url The URL to load in to the script
  * @param {Array<Object<string,string>>} props.keyValuePairs A list of key-value pairs to attribute to ad slots in DFP.
@@ -11,7 +11,7 @@ import { zeusNotice } from "@zeus-platform/util";
  * @throws This component will throw an error if the `children` passed are inappropriate.
  * @private
  */
-export const ZeusLoader = ({ url, keyValuePairs = [], children = null }) => {
+export const ZeusLoader = ({ url, keyValuePairs = null, children = null }) => {
   // A safety to make sure we don't run this more than once.
   if (document.getElementById("____zeus_script")) return <Fragment />;
 
@@ -22,8 +22,8 @@ export const ZeusLoader = ({ url, keyValuePairs = [], children = null }) => {
   const childFunction = children
     ? children
     : () =>
-        window.zeus.bootstrap({
-          kvpairs: keyValuePairs
+        window.zeus.run({
+          kvpairs: keyValuePairs || []
         });
   if (typeof childFunction !== "function") {
     throw new Error(
@@ -36,9 +36,7 @@ export const ZeusLoader = ({ url, keyValuePairs = [], children = null }) => {
   newScript.src = url;
   newScript.id = "____zeus_script";
   newScript.async = true;
-  newScript.onload = () => {
-    childFunction();
-  };
+  newScript.onload = () => childFunction();
   document.head.appendChild(newScript);
 
   // This never actually has any meaningful output, it does all of its business in the document head.

@@ -1,11 +1,15 @@
 # `@zeus/ad`
 
-> TODO: description
+The purpose of the `ZeusAd` component is to embed a Zeus-managed advertisement into a React app.
 
 ## Usage
 
-```
-const ad = require('@zeus/ad');
+```js
+const ZeusAd = require('@zeus/ad');
 
-// TODO: DEMONSTRATE API
+const ArticleTemplate = (props) => (
+  <Page {...props}>
+    <ZeusAd slotId='ad-slot-name' />
+  </Page>
+)
 ```

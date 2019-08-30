@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import { zeusNotice } from "@zeus-platform/util";
 
 /**
@@ -9,11 +9,18 @@ import { zeusNotice } from "@zeus-platform/util";
  * @param {function} props.children The one and only child must be a function which is executed once the script is loaded.
  * @returns This component always returns `null`.
  * @throws This component will throw an error if the `children` passed are inappropriate.
- * @private
  */
 export const ZeusLoader = ({ url, keyValuePairs = null, children = null }) => {
+  // This component doesn't really output anything, its business is to add something to the `head` tag.
+  // In order to keep React from bombing for Invariant errors, we have to output _something_.
+  const commentTag = (
+    <div
+      dangerouslySetInnerHTML={{ __html: "<!-- Zeus Loaded -->" }}
+      style={{ display: "none" }}
+    />
+  );
   // A safety to make sure we don't run this more than once.
-  if (document.getElementById("____zeus_script")) return <Fragment />;
+  if (document.getElementById("____zeus_script")) return commentTag;
 
   // Notify the console so that we know that it's happening.
   zeusNotice("Loading the Zeus Loader");
@@ -36,9 +43,9 @@ export const ZeusLoader = ({ url, keyValuePairs = null, children = null }) => {
   newScript.src = url;
   newScript.id = "____zeus_script";
   newScript.async = true;
-  newScript.onload = () => childFunction();
+  newScript.onload = childFunction;
   document.head.appendChild(newScript);
 
   // This never actually has any meaningful output, it does all of its business in the document head.
-  return <Fragment />;
+  return commentTag;
 };

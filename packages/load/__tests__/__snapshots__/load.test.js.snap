@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`@zeus-platform/load Should render in a simple case and match snapshot 1`] = `null`;
+exports[`@zeus-platform/load Should render in a simple case and match snapshot 1`] = `"<div style=\\"display: none;\\"><!-- Zeus Loaded --></div>"`;
 
 exports[`@zeus-platform/load Should render in a simple case and match snapshot 2`] = `
 <script
@@ -9,7 +9,7 @@ exports[`@zeus-platform/load Should render in a simple case and match snapshot 2
 />
 `;
 
-exports[`@zeus-platform/load Should render with KVPs and match snapshot 1`] = `null`;
+exports[`@zeus-platform/load Should render with KVPs and match snapshot 1`] = `"<div style=\\"display: none;\\"><!-- Zeus Loaded --></div>"`;
 
 exports[`@zeus-platform/load Should render with KVPs and match snapshot 2`] = `
 <script

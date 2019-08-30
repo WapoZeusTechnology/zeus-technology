@@ -40,5 +40,5 @@ export const ZeusLoader = ({ url, keyValuePairs = null, children = null }) => {
   document.head.appendChild(newScript);
 
   // This never actually has any meaningful output, it does all of its business in the document head.
-  return <Fragment>{"<!-- Loaded Zeus -->"}</Fragment>;
+  return <Fragment />;
 };

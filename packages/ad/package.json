@@ -31,7 +31,7 @@
     "url": "https://github.com/WPMedia/zeus-react-public/issues"
   },
   "dependencies": {
-    "react": "^16.9.0"
+    "react": "^16.1.0"
   },
   "gitHead": "4969a530fd17a8194300272698f9c6083628c951"
 }

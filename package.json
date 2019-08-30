@@ -1,6 +1,6 @@
 {
   "name": "zeus-react-public",
-  "version": "0.1.9-alpha.0",
+  "version": "1.0.0",
   "description": "React components for use with Zeus.",
   "main": "index.js",
   "repository": "git@github.com:WPMedia/zeus-react-public.git",

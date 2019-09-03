@@ -24,11 +24,9 @@ module.exports = {
   plugins: [
     new webpack.HtmlWebpackPlugin({
       template: 'src/index.html',
-      templateParameters: {
-        zeusTag: zeusLoader({
-          url: `https://my-site-name.zeustechnology.${ dev ? 'io' : 'com' }/main.js`
-        })
-      }
+      zeusTag: zeusLoader({
+        url: `https://my-site-name.zeustechnology.${ dev ? 'io' : 'com' }/main.js`
+      })
     }),
   ]
 }
@@ -40,6 +38,6 @@ Then, in your template...
 <!DOCTYPE html>
 <html>
   <head>
-  <%= zeusTag %>
+  <%= htmlWebpackPlugin.options.zeusTag %>
   ...
 ```

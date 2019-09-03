@@ -1,31 +1,45 @@
 # `@zeus-platform/load`
 
-The purpose of the `ZeusLoader` component is to create and initialize the Zeus manager. This component interfaces with the hosted Zeus libraries to control bidding, key-value-pair management, as well as the delivery and display of creatives.
+The purpose of the `zeusLoader` function is to simplify the loading of the Zeus library. This function interfaces with the hosted Zeus libraries which control bidding, key-value-pair management, as well as the delivery and display of creatives.
 
-This component should be used in conjunction with the `ZeusAd` component, which will embed the advertisement element in to a given React application.
+This function itself only deals with the `<script />` element which loads the hosted Zeus Technology script, and it should be used in conjunction with the `ZeusAd` React component, which will embed the advertisement element in to a given React application.
+
+## Note on performance
+
+Regardless of how you load Zeus Technology into your site, be certain to always have Zeus Technology as the first tag that runs on your site. This way, Zeus can start loading its code and have the bidding engine ready by time `ZeusAd` components or `zeus-ad` HTML tags are created in the DOM.
 
 ## Usage
 
-In simple cases, this module can be used only with a simple `url` prop.
+In cases of statically rendered React, where `HtmlWebpackPlugin` is being used, we recommend passing the output of this function as a template parameter. In more complex situations, such as server-side rendering, you may be able to run this function a single time for all users.
 
-```jsx
-import { ZeusLoader } from "@zeus-platform/load";
+```js
+// webpack.config.js
+const { zeusLoader } = require('@zeus-technology/load')
+// ...
 
-const PageTemplate = (props) => (
-  <Page {...props}>
-    <ZeusLoader url="https://test.zeustechnology.com" />
-  </Page>
-)
+module.exports = {
+
+  // ...
+
+  plugins: [
+    new webpack.HtmlWebpackPlugin({
+      template: 'src/index.html',
+      templateParameters: {
+        zeusTag: zeusLoader({
+          url: `https://my-site-name.zeustechnology.${ dev ? 'io' : 'com' }/main.js`
+        })
+      }
+    }),
+  ]
+}
 ```
 
-If you have a simple case, but wish to provide a list of key-value pairs, simply provide them using the `keyValuePairs` prop.
+Then, in your template...
 
- ```jsx
-import { ZeusLoader } from "@zeus-platform/load";
-
-const PageTemplate = (props) => (
-  <Page {...props}>
-    <ZeusLoader keyValuePairs={[{key:"value}]} url="https://test.zeustechnology.com" />
-  </Page>
-)
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+  <%= zeusTag %>
+  ...
 ```

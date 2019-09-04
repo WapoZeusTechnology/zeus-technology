@@ -10,9 +10,6 @@ pipeline{
     triggers{
         pollSCM("H/2 * * * *")
     }
-    environment{
-        NODE_ENV="production"
-    }
     stages{
         stage("Verbose"){
             steps{

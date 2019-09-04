@@ -1,14 +1,12 @@
 "use strict";
 
-import React from "react";
-import { ZeusLoader } from "../lib";
-import renderer from "react-test-renderer";
+import { zeusLoader } from "../lib";
 
 describe("@zeus-platform/load", () => {
-  it("Should render and match snapshot", () => {
-    const sample = renderer.create(
-      <ZeusLoader url="https://test.zeustechnology.com" />
-    );
-    expect(sample.toJSON()).toMatchSnapshot();
+  it("Should render in a simple case and match snapshot", () => {});
+  it("Should render with KVPs and match snapshot", () => {
+    window.zeus = { run: jest.fn() };
+    const sample = zeusLoader({ url: "https://foo.com" });
+    expect(sample).toMatchSnapshot();
   });
 });

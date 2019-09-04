@@ -1,8 +1,19 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`@zeus-platform/ad Should render and match snapshot 1`] = `
+exports[`@zeus-platform/ad Should render and match snapshot with zeus_ 1`] = `
 <zeus-ad
-  id="sample0"
-  slotId="sample0"
+  id="zeus_sample0"
+/>
+`;
+
+exports[`@zeus-platform/ad Should render and match snapshot with zeus- 1`] = `
+<zeus-ad
+  id="zeus_sample0"
+/>
+`;
+
+exports[`@zeus-platform/ad Should render and match snapshot without zeus_ or zeus- 1`] = `
+<zeus-ad
+  id="zeus_sample0"
 />
 `;

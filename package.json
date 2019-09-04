@@ -1,6 +1,6 @@
 {
-  "name": "zeus-react-public",
-  "version": "0.1.0",
+  "name": "zeus-technology",
+  "version": "1.0.0",
   "description": "React components for use with Zeus.",
   "main": "index.js",
   "repository": "git@github.com:WPMedia/zeus-react-public.git",
@@ -19,6 +19,6 @@
     "jest": "^24.8.0",
     "jest-config": "^24.8.0",
     "lerna": "^3.16.4",
-    "react-test-renderer": "^16.9.0"
+    "react-test-renderer": "^16.1.0"
   }
 }

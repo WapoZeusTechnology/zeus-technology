@@ -15,7 +15,7 @@ export const zeusNotice = messages => {
     "font-weight: bold"
   ].join(";");
   const logItems = messages instanceof Array ? messages : [messages];
-  console.log("%c -- START ZEUS --", styles);
-  console.log(...logItems);
-  console.log("%c -- END ZEUS --", styles);
+  console.info("%c -- START ZEUS --", styles);
+  console.info(...logItems);
+  console.info("%c -- END ZEUS --", styles);
 };

@@ -5,11 +5,12 @@ The purpose of the `ZeusAd` component is to embed a Zeus-managed advertisement i
 ## Usage
 
 ```js
-const ZeusAd = require('@zeus-technology/ad');
+import React, { Fragment } from ‘react’;
+import { ZeusAd } from '@zeus-technology/ad';
 
-const ArticleTemplate = (props) => (
-  <Page {...props}>
+const App = (props) => (
+  <Fragment>
     <ZeusAd slotId='ad-slot-name' style={{display:visible?'':'none'}} />
-  </Page>
+  </Fragment>
 )
 ```

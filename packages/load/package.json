@@ -1,7 +1,7 @@
 {
   "name": "@zeus-technology/load",
   "private": false,
-  "version": "1.0.6",
+  "version": "1.0.7-alpha.0",
   "description": "The loader for Zeus.",
   "author": "Mike Stemle <mike.stemle@washpost.com>",
   "homepage": "https://github.com/WPMedia/zeus-react-public#readme",

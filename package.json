@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "description": "React components for use with Zeus.",
   "main": "index.js",
-  "repository": "git@github.com:WPMedia/zeus-react-public.git",
+  "repository": "git@github.com:WapoZeusTechnology/zeus-technology.git",
   "author": "Mike Stemle <mike.stemle@washpost.com>",
-  "license": "Apache-2.0",
+  "license": "MIT",
   "workspaces": [
     "packages/*"
   ],

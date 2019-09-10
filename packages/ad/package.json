@@ -4,8 +4,8 @@
   "version": "1.0.6",
   "description": "The Ad slot component for Zeus",
   "author": "Mike Stemle <mike.stemle@washpost.com>",
-  "homepage": "https://github.com/WPMedia/zeus-react-public#readme",
-  "license": "Apache-2.0",
+  "homepage": "https://github.com/WapoZeusTechnology/zeus-technology/blob/master/packages/ad/README.md",
+  "license": "MIT",
   "main": "lib/index.js",
   "publishConfig": {
     "directory": "dist",
@@ -20,7 +20,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/WPMedia/zeus-react-public.git"
+    "url": "git+https://github.com/WapoZeusTechnology/zeus-react-public.git"
   },
   "scripts": {
     "build": "BABEL_ENV=build babel . --out-dir dist --source-maps --delete-dir-on-start --config-file ./babel.config.js --no-comments --copy-files",
@@ -28,7 +28,7 @@
     "test": "jest"
   },
   "bugs": {
-    "url": "https://github.com/WPMedia/zeus-react-public/issues"
+    "url": "https://github.com/WapoZeusTechnology/zeus-technology/issues"
   },
   "dependencies": {
     "prop-types": "^15.7.2",

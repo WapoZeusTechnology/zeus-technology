@@ -14,6 +14,8 @@ pipeline{
         stage("Verbose"){
             steps{
                 sh "env"
+                sh "ls /usr/bin /usr/local/bin"
+                sh "wget 'https://google.com'"
             }
         }
         stage("Yarn"){

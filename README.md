@@ -1,19 +1,13 @@
-# zeus-react-public
-Public-facing React components
+# zeus-technology
 
-## Principles
-
-- We publish built code so that people don't have to fight with dependencies, or build pipeline differences.
-- Our tests run against un-built code so that we don't die trying to troubleshoot tests against minified code.
-- We manually publish versions to prevent Jenkins from breaking the world.
-
-**KEEP IN MIND THAT THIS MODULE IS PUBLISHED PUBLICLY ON NPMJS! NO KEYS! NO SECRET SAUCE!**
+React components for Zeus Technology.
 
 ## Building and publishing
 
 To build:
 
 ```sh
+lerna run clean
 lerna run build
 ```
 
@@ -23,23 +17,30 @@ To test:
 lerna run test
 ```
 
-To deploy
+To version:
+
+- Update your `CHANGELOG.md` first
+- Commit your version change in the PR before attempting to publish
 
 ```sh
 # Prerelease versions
-lerna publish prerelease
-
-# To redo the same version (in the event of a failed publish)
-lerna publish from-package
+lerna version prerelease
 
 # Patch versions
-lerna publish patch
+lerna version patch
 
 # Minor versions
-lerna publish minor
+lerna version minor
 
 # Major versions
-lerna publish major
+lerna version major
+```
+
+To publish:
+
+```sh
+# To redo the same version (in the event of a failed publish)
+lerna publish from-package
 ```
 
 ## Troubleshooting

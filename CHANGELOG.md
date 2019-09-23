@@ -18,4 +18,4 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Added
 
-* You can now use [Storybook](https://storybook.js.org) to view how these components work.
+* You can now use [Storybook](https://storybook.js.org) to view how these components work. Use `yarn run storybook` to view the Storybook for this monorepo.

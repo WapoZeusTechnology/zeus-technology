@@ -3,7 +3,7 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# 1.0.0 (2019-08-30)
+## 1.0.0 (2019-08-30)
 
 **Note:** Version bump only for package @zeus-platform/ad
 
@@ -13,3 +13,9 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 * Newly licensed under the MIT license
 * New public repository
+
+## [**1.0.9**] - 2019-09-23
+
+### Added
+
+* Support for navigation in single-page-applications so that by default the ad changes whenever the route changes. This only supports `react-router-dom` and compatible variants. Use the `ZeusAdWithRouter` component to take advantage of this.

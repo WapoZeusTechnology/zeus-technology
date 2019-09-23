@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import { linkTo } from "@storybook/addon-links";
 import { zeusLoader } from "@zeus-technology/load";
-import { ZeusAd } from "@zeus-technology/ad";
+import { ZeusAd, ZeusAdWithRouter } from "@zeus-technology/ad";
 import { HashRouter, Route, Link } from "react-router-dom";
 
 export default {
@@ -24,11 +24,11 @@ const Bar = () => (
 export const toStorybook = () => (
   <HashRouter basename="/" hashType="noslash">
     <h1>This ad will refresh every time you navigate.</h1>
-    <ZeusAd slotId="zeus_mob_bigbox_1" />
+    <ZeusAdWithRouter slotId="zeus_mob_bigbox_1" />
     <h1>
       This ad will <em>not refresh</em> every time you navigate.
     </h1>
-    <ZeusAd slotId="zeus_mob_bigbox_2" changeOnNavigate={false} />
+    <ZeusAd slotId="zeus_mob_bigbox_2" />
     <Route path="/" exact={true} component={Foo} />
     <Route path="/bar" component={Bar} />
   </HashRouter>

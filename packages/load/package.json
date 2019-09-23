@@ -1,7 +1,7 @@
 {
   "name": "@zeus-technology/load",
   "private": false,
-  "version": "1.0.9-alpha.0",
+  "version": "1.0.9",
   "description": "The loader for Zeus.",
   "author": "Mike Stemle <mike.stemle@washpost.com>",
   "homepage": "https://github.com/WapoZeusTechnology/zeus-technology/blob/master/packages/load/README.md",

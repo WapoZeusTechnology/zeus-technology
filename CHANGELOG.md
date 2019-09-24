@@ -13,3 +13,9 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 * Newly licensed under the MIT license
 * New public repository
+
+## [**1.0.9**] - 2019-09-23
+
+### Added
+
+* You can now use [Storybook](https://storybook.js.org) to view how these components work. Use `yarn run storybook` to view the Storybook for this monorepo.

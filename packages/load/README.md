@@ -1,5 +1,7 @@
 # `@zeus-platform/load`
 
+[![Build Status](https://travis-ci.org/WapoZeusTechnology/zeus-technology.svg?branch=master)](https://travis-ci.org/WapoZeusTechnology/zeus-technology)
+
 The purpose of the `zeusLoader` function is to simplify the loading of the Zeus library. This function interfaces with the hosted Zeus libraries which control bidding, key-value-pair management, as well as the delivery and display of creatives.
 
 This function itself only deals with the `<script />` element which loads the hosted Zeus Technology script, and it should be used in conjunction with the `ZeusAd` React component, which will embed the advertisement element in to a given React application.
@@ -19,16 +21,16 @@ const { zeusLoader } = require('@zeus-technology/load')
 
 module.exports = {
 
-  // ...
+	// ...
 
-  plugins: [
-    new webpack.HtmlWebpackPlugin({
-      template: 'src/index.html',
-      zeusTag: zeusLoader({
-        url: `https://my-site-name.zeustechnology.${ dev ? 'io' : 'com' }/main.js`
-      })
-    }),
-  ]
+	plugins: [
+		new webpack.HtmlWebpackPlugin({
+			template: 'src/index.html',
+			zeusTag: zeusLoader({
+				url: `https://my-site-name.zeustechnology.${ dev ? 'io' : 'com' }/main.js`
+			})
+		}),
+	]
 }
 ```
 
@@ -37,7 +39,7 @@ Then, in your template...
 ```html
 <!DOCTYPE html>
 <html>
-  <head>
-  <%= htmlWebpackPlugin.options.zeusTag %>
-  ...
+	<head>
+	<%= htmlWebpackPlugin.options.zeusTag %>
+	...
 ```

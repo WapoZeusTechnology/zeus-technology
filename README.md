@@ -1,5 +1,7 @@
 # zeus-technology
 
+[![Build Status](https://travis-ci.org/WapoZeusTechnology/zeus-technology.svg?branch=master)](https://travis-ci.org/WapoZeusTechnology/zeus-technology)
+
 React components for Zeus Technology.
 
 ## Building and publishing

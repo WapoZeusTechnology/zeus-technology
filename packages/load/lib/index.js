@@ -5,4 +5,4 @@
  * @returns This function returns a `<script />` tag with the URL you provided which will work for Zeus.
  */
 export const zeusLoader = ({ url }) =>
-  `<script src="${url}" async="true" id="__zeus_script"></script><script type="application/javascript">document.getElementById("__zeus_script").onload=function(){if (window.hasOwnProperty(zeus) && window.zeus.hasOwnProperty(run)) window.zeus.run()}</script>`;
+  `<script src="${url}" async="true" id="__zeus_script"></script><script type="application/javascript">document.getElementById("__zeus_script").onload=function(){if (window.hasOwnProperty("zeus") && window.zeus.hasOwnProperty("run")) window.zeus.run()}</script>`;

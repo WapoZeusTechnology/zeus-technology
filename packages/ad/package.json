@@ -34,5 +34,8 @@
     "prop-types": "^15.7.2",
     "react": "^16.1.0"
   },
+  "peerDependencies": {
+    "react-router-dom": "^5.0.1"
+  },
   "gitHead": "4969a530fd17a8194300272698f9c6083628c951"
 }

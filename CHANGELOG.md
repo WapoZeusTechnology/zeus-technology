@@ -19,3 +19,9 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### Added
 
 * You can now use [Storybook](https://storybook.js.org) to view how these components work. Use `yarn run storybook` to view the Storybook for this monorepo.
+
+## [**1.0.10**] - 2019-10-04
+
+### Added
+
+* Travis-CI support!

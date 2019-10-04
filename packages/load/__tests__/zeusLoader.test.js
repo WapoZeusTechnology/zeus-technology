@@ -1,6 +1,6 @@
 "use strict";
 
-import { zeusLoader } from "../lib";
+import { zeusLoader } from "../lib/zeusLoader";
 
 describe("@zeus-platform/load", () => {
   it("Should render with KVPs and match snapshot", () => {

@@ -19,3 +19,17 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### Added
 
 * Support for navigation in single-page-applications so that by default the ad changes whenever the route changes. This only supports `react-router-dom` and compatible variants. Use the `ZeusAdWithRouter` component to take advantage of this.
+
+## [**1.0.10**] - 2019-10-04
+
+### Fixed
+
+* Dependency issue with `react-router-dom` is now repaired.
+
+### Changed
+
+* Re-factored components to be more module and testable.
+
+### Added
+
+* Travis-CI support!

@@ -4,6 +4,10 @@
 
 The purpose of the `ZeusAd` component is to embed a Zeus-managed advertisement into a React app.
 
+**NOTE**: Any parts of this module which mention a "router," those have been tested with `react-router-dom`, and are peer dependencies. If you are not using the `ZeusAdWithRouter` component, you need not install this dependency.
+
+If you need additional routers supported, please submit an issue.
+
 ## Usage
 
 ### `ZeusAd`

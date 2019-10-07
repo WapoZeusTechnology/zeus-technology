@@ -7,11 +7,9 @@ import { getSlotId } from "@zeus-technology/util";
  * @param {Object} props The properties to pass to the `zeus-ad` element.
  * @param {string} props.slotId The ID of the inventory slot.
  */
-const ZeusAd = ({ slotId, ...props }) => {
+export const ZeusAd = ({ slotId, ...props }) => {
   return <zeus-ad id={getSlotId(slotId)} {...props} />;
 };
 ZeusAd.propTypes = {
   slotId: PropTypes.string.isRequired
 };
-
-export { ZeusAd };

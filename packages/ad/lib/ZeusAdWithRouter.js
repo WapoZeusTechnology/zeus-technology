@@ -1,8 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { getSlotId, loadOptionalModule } from "@zeus-technology/util";
+import { withRouter } from "react-router-dom";
 
-const { withRouter } = loadOptionalModule("react-router-dom");
+import { getSlotId } from "@zeus-technology/util";
+
+import { ZeusAd } from "./ZeusAd";
 
 /**
  * This component introduces a `zeus-ad` element to present an ad inventory slot in a manner which responds to your Router.

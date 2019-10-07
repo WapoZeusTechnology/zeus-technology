@@ -32,7 +32,8 @@
   },
   "dependencies": {
     "prop-types": "^15.7.2",
-    "react": "^16.1.0"
+    "react": "^16.1.0",
+    "@zeus-technology/util": "^1.0.10-alpha.0"
   },
   "peerDependencies": {
     "react-router-dom": "^5.0.1"

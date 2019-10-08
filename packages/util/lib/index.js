@@ -2,6 +2,6 @@
 
 import { zeusNotice } from "./zeus-notice";
 import { getSlotId } from "./getSlotId";
-import { triggerRerender } from "./zeus-api";
+import { triggerRerender, triggerKeyValuePairsUpdate } from "./zeus-api";
 
-export { zeusNotice, getSlotId, triggerRerender };
+export { zeusNotice, getSlotId, triggerRerender, triggerKeyValuePairsUpdate };

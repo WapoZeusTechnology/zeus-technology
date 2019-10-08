@@ -33,3 +33,14 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### Added
 
 * Travis-CI support!
+
+## [**1.0.10**] - 2019-10-08
+
+### Added
+
+* Support for disabling the `react-router-dom`-based ad slot refreshing.
+* Support for screen-based granularity in key-value pairs.
+
+### Fixed
+
+* Issue where ad re-rendering was counting as a refresh.

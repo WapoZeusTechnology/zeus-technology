@@ -13,3 +13,10 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 * Newly licensed under the MIT license
 * New public repository
+
+## [**1.0.10**] - 2019-10-08
+
+### Added
+
+* Abstractions for the hosted Zeus libraries.
+* Moved the function which sanitizes and validates ad slot IDs to this module.

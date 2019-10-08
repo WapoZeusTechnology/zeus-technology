@@ -10,7 +10,7 @@ import { triggerKeyValuePairsUpdate } from "@zeus-technology/util";
  */
 export const ZeusRouteResponderImpl = ({
   location,
-  keyValuePairs = [],
+  keyValuePairs = {},
   shouldChangeForRoute = () => true
 }) => {
   const lastLocation = useRef(location);

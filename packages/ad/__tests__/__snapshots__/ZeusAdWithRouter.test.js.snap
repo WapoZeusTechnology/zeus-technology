@@ -1,7 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`@zeus-platform/ad Work with router stuff 1`] = `
-<zeus-ad
-  id="zeus_sample0"
-/>
-`;

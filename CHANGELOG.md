@@ -25,3 +25,8 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### Added
 
 * Travis-CI support!
+* Lots of test coverage.
+
+### Changed
+
+* Cleaned up a bunch of dependency issues.

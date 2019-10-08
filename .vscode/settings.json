@@ -2,5 +2,6 @@
   "cSpell.words": [
     "bigbox",
     "noslash"
-  ]
+  ],
+  "eslint.enable": true
 }

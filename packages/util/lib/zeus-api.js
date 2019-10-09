@@ -6,5 +6,7 @@ export const triggerRerender = slotId => {
 };
 
 export const triggerKeyValuePairsUpdate = (kvps = {}) => {
-  zeus.emit("RESET_KEYVALUES", kvps);
+  if (window.hasOwnProperty("zeus")) {
+    window.zeus.emit("RESET_KEYVALUES", kvps);
+  }
 };

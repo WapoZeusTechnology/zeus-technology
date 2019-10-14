@@ -45,6 +45,7 @@ import { ZeusAdWithRouter } from '@zeus-technology/ad';
 
 const App = (props) => (
 	<Router>
+		<ZeusRouteResponder />
 		<ZeusAdWithRouter changeOnNavigate={state.variable} slotId='ad-slot-name' />
 	</Router>
 )
@@ -64,8 +65,10 @@ import { ZeusAdWithRouter } from '@zeus-technology/ad';
 
 const App = (props) => (
 	<Router>
+		<ZeusRouteResponder />
 		<ZeusAdWithRouter
 			slotId='ad-slot-name'
+			debug={true}
 			shouldChangeForRoute={(current,previous) => !current.search.match(/refresh=skip/)} />
 	</Router>
 )
@@ -74,9 +77,17 @@ const App = (props) => (
 In this example we're telling `ZeusAdWithRouter` only to change for routes which don't have
 search queries matching `refresh=skip`.
 
+There is an optional `debug` prop that causes the `ZeusAdWithRouter` component to output
+debug information.
+
 ### `ZeusRouteResponder`
 
-This component allows you to hook in to your route to communicate key-value pairs to Zeus.
+The `ZeusRouteResponder` component should be placed inside of your `Router` (`MemoryRouter`,
+`HashRouter`, `BrowserRouter`), but _not_ inside of a route. It is recommended that you make
+this the first line after you open your Router. This component works with `ZeusAdWithRouter` to
+provide route-based metadata.
+
+This component also allows you to hook in to your route to communicate key-value pairs to Zeus.
 Just like `ZeusAdWithRouter`, you can use the `shouldChangeForRoute` prop to pass a function
 which allows you to control whether or not this event shall fire.
 
@@ -90,6 +101,7 @@ import { ZeusRouteResponder } from '@zeus-technology/ad';
 
 const App = (props) => (
 	<Router>
+		<ZeusRouteResponder />
 		<ZeusAdWithRouter
 			shouldChangeForRoute={(current,previous) => !current.search.match(/refresh=skip/)}
 			keyValuePairs={state.pageKvps} />

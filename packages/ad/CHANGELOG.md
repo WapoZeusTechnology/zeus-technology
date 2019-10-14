@@ -44,3 +44,13 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### Fixed
 
 * Issue where ad re-rendering was counting as a refresh.
+
+## [**1.1.0**] - 2019-10-14
+
+### Fixed
+
+* The `ZeusAdWithRouter` component now works uniformly both inside and outside of a `Route`.
+
+### Changed
+
+* When using `ZeusAdWithRouter`, you now _must_ use `ZeusRouteResponder` for proper functionality.

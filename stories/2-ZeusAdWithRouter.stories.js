@@ -14,6 +14,11 @@ const Foo = () => (
     <Link to="/bar">Bar!</Link>
     <br />
     <Link to="/baz">Baz!</Link>
+    <ZeusAdWithRouter
+      debug={true}
+      slotId="zeus_mob_bigbox_2"
+      shouldChangeForRoute={shouldChangeForRoute}
+    />
   </div>
 );
 const Bar = () => (
@@ -22,6 +27,7 @@ const Bar = () => (
     <Link to="/baz">Baz!</Link>
     <br />
     <Link to="/">Foo!</Link>
+    <ZeusAdWithRouter debug={true} okkey={1} slotId="zeus_mob_bigbox_2" />
   </div>
 );
 const Baz = () => (
@@ -30,6 +36,7 @@ const Baz = () => (
     <Link to="/">Foo!</Link>
     <br />
     <Link to="/bar">Bar!</Link>
+    <ZeusAdWithRouter debug={true} okkey={2} slotId="zeus_mob_bigbox_2" />
   </div>
 );
 
@@ -43,6 +50,7 @@ export const toStorybook = () => (
     />
     <h1>This ad will refresh every time you navigate.</h1>
     <ZeusAdWithRouter
+      debug={true}
       slotId="zeus_mob_bigbox_1"
       shouldChangeForRoute={shouldChangeForRoute}
     />

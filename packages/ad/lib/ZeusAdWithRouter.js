@@ -3,6 +3,11 @@ import PropTypes from "prop-types";
 import { withRouter } from "react-router-dom";
 
 import { getSlotId, zeusNotice, triggerRerender } from "@zeus-technology/util";
+import {
+  getNavigationFacts,
+  routesAreEqual,
+  routeResponderReady
+} from "./ZeusRouteResponder";
 
 import { ZeusAd } from "./ZeusAd";
 
@@ -15,15 +20,21 @@ import { ZeusAd } from "./ZeusAd";
  */
 const ZeusAdWithRouterImpl = ({
   slotId,
-  location,
-  match,
-  history,
   shouldChangeForRoute = () => true,
   changeOnNavigate = true,
+  debug = false,
   ...props
 }) => {
-  const lastLocation = useRef(location);
+  const navigationFacts = getNavigationFacts();
   const useSlotId = getSlotId(slotId);
+
+  // Warn folks if there's no route responder in play.
+  if (!routeResponderReady) {
+    zeusNotice(
+      "There is no `ZeusRouteResponder` ready. " +
+        "Please add one inside your Router. See README.md for more details."
+    );
+  }
 
   // Warn the user if they gave us an invalid property here.
   if (typeof shouldChangeForRoute !== "function") {
@@ -33,29 +44,30 @@ const ZeusAdWithRouterImpl = ({
     shouldChangeForRoute = () => true;
   }
 
-  useEffect(() => {
-    // We need to know whether or not the route changed, and if the caller thinks
-    // that it is a change worthy of an update.
-    const shouldTriggerChange =
-      lastLocation.current !== location
-        ? shouldChangeForRoute(location, lastLocation.current)
-        : false;
-    lastLocation.current = location;
+  // If we navigated, then we let the caller decide whether or not we rerender.
+  const shouldTriggerChange = navigationFacts.navigated
+    ? shouldChangeForRoute(navigationFacts.to, navigationFacts.from)
+    : false;
+  debug &&
+    console.debug(
+      `ZEUS DEBUG\nConsidering a refresh of ad slot «${useSlotId}» with the following information:`,
+      {
+        navigationFacts,
+        shouldTriggerChange
+      }
+    );
 
-    // Only change if we're supposed to change for this route.
-    if (shouldTriggerChange && changeOnNavigate) {
-      triggerRerender(useSlotId);
-    }
-  }, [shouldChangeForRoute, location, changeOnNavigate, useSlotId]);
+  // Only change if we're supposed to change for this route.
+  if (shouldTriggerChange && changeOnNavigate) {
+    triggerRerender(useSlotId);
+  }
 
   return <ZeusAd slotId={useSlotId} {...props} />;
 };
 
 ZeusAdWithRouterImpl.propTypes = {
   slotId: PropTypes.string.isRequired,
-  location: PropTypes.object.isRequired,
-  match: PropTypes.object.isRequired,
-  history: PropTypes.object.isRequired,
+  debug: PropTypes.bool,
   changeOnNavigate: PropTypes.bool,
   shouldChangeForRoute: PropTypes.func
 };

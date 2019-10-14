@@ -29,6 +29,17 @@ If you're using `react-router-dom` and you would like to have your ads
 refresh when your route changes, try this. With this module, your Zeus
 ad slot can re-render (not refresh) with every change of the route.
 
+*NOTE*: You must have a `ZeusRouteResponder` component inside of your
+`Router` in order to use `ZeusAdWithRouter`. It is recommended that you
+add this as the first child passed to the `Router` instance.
+
+```js
+<MemoryRouter>
+	<ZeusRouteResponder />
+	{/* ... */}
+</MemoryRouter>
+```
+
 The default behavior is that every change of the route will cause the
 ad slot to re-render. Using the _Boolean control_, you can bind a state
 variable to the component to prevent it from refreshing in certain state

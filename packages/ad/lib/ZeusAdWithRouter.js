@@ -3,7 +3,11 @@ import PropTypes from "prop-types";
 import { withRouter } from "react-router-dom";
 
 import { getSlotId, zeusNotice, triggerRerender } from "@zeus-technology/util";
-import { getNavigationFacts, routesAreEqual } from "./ZeusRouteResponder";
+import {
+  getNavigationFacts,
+  routesAreEqual,
+  routeResponderReady
+} from "./ZeusRouteResponder";
 
 import { ZeusAd } from "./ZeusAd";
 
@@ -23,6 +27,14 @@ const ZeusAdWithRouterImpl = ({
 }) => {
   const navigationFacts = getNavigationFacts();
   const useSlotId = getSlotId(slotId);
+
+  // Warn folks if there's no route responder in play.
+  if (!routeResponderReady) {
+    zeusNotice(
+      "There is no `ZeusRouteResponder` ready. " +
+        "Please add one inside your Router. See README.md for more details."
+    );
+  }
 
   // Warn the user if they gave us an invalid property here.
   if (typeof shouldChangeForRoute !== "function") {

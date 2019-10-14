@@ -26,6 +26,7 @@ const setNavigationFacts = ({ from, to }) => {
     timestamp: new Date().getTime()
   });
 };
+export let routeResponderReady = false;
 
 /**
  * This queues up something that will trigger the zeus stuff to update when KVPs change, or the route does.
@@ -63,6 +64,7 @@ export const ZeusRouteResponderImpl = ({
     }
   }, [shouldChangeForRoute, location, keyValuePairs]);
 
+  routeResponderReady = true;
   return null;
 };
 

@@ -6,7 +6,8 @@ import { getSlotId, zeusNotice, triggerRerender } from "@zeus-technology/util";
 import {
   getNavigationFacts,
   routesAreEqual,
-  routeResponderReady
+  routeResponderReady,
+  lockZeusElement
 } from "./ZeusRouteResponder";
 
 import { ZeusAd } from "./ZeusAd";
@@ -17,9 +18,11 @@ import { ZeusAd } from "./ZeusAd";
  * @param {string} props.slotId The ID of the inventory slot.
  * @param {bool} props.changeOnNavigate By default, the ad slots will refresh when the route does. Pass false into this value to disable that functionality.
  * @param {function} props.shouldChangeForRoute A function which determines whether or not we should change the ad based on the new route. This function should take two arguments: the current `location`, and the previous `location` from `react-router-dom`.
+ * @param {bool} props.debug A debug flag that prints debug messages.
  */
 const ZeusAdWithRouterImpl = ({
   slotId,
+  location,
   shouldChangeForRoute = () => true,
   changeOnNavigate = true,
   debug = false,
@@ -44,30 +47,43 @@ const ZeusAdWithRouterImpl = ({
     shouldChangeForRoute = () => true;
   }
 
-  // If we navigated, then we let the caller decide whether or not we rerender.
-  const shouldTriggerChange = navigationFacts.navigated
-    ? shouldChangeForRoute(navigationFacts.to, navigationFacts.from)
-    : false;
-  debug &&
-    console.debug(
-      `ZEUS DEBUG\nConsidering a refresh of ad slot «${useSlotId}» with the following information:`,
-      {
-        navigationFacts,
-        shouldTriggerChange
-      }
-    );
+  useEffect(() => {
+    // If we navigated, then we let the caller decide whether or not we rerender.
+    const shouldTriggerChange = navigationFacts.navigated
+      ? shouldChangeForRoute(navigationFacts.to, navigationFacts.from) &&
+        lockZeusElement(useSlotId)
+      : false;
+    debug &&
+      console.debug(
+        `ZEUS DEBUG: ZeusAdWithRouter\nConsidering a refresh of ad slot «${useSlotId}» with the following information:`,
+        {
+          navigationFacts,
+          changeOnNavigate,
+          shouldTriggerChange
+        }
+      );
 
-  // Only change if we're supposed to change for this route.
-  if (shouldTriggerChange && changeOnNavigate) {
-    triggerRerender(useSlotId);
-  }
+    // Only change if we're supposed to change for this route.
+    if (shouldTriggerChange && changeOnNavigate) {
+      triggerRerender(useSlotId);
+    }
+  }, [
+    slotId,
+    navigationFacts,
+    shouldChangeForRoute,
+    debug,
+    useSlotId,
+    location,
+    changeOnNavigate
+  ]);
 
-  return <ZeusAd slotId={useSlotId} {...props} />;
+  return <ZeusAd slotId={useSlotId} debug={debug} {...props} />;
 };
 
 ZeusAdWithRouterImpl.propTypes = {
   slotId: PropTypes.string.isRequired,
   debug: PropTypes.bool,
+  location: PropTypes.object.isRequired,
   changeOnNavigate: PropTypes.bool,
   shouldChangeForRoute: PropTypes.func
 };

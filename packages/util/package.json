@@ -1,7 +1,7 @@
 {
   "name": "@zeus-technology/util",
   "private": false,
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Various utility components for Zeus React components.",
   "author": "Mike Stemle <mike.stemle@washpost.com>",
   "homepage": "https://github.com/WapoZeusTechnology/zeus-technology/blob/master/packages/util/README.md",

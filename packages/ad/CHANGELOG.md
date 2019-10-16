@@ -54,3 +54,9 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### Changed
 
 * When using `ZeusAdWithRouter`, you now _must_ use `ZeusRouteResponder` for proper functionality.
+
+## [**1.1.1**] - 2019-10-16
+
+### Fixed
+
+* Fixed issues with residual loads in HOCs causing duplicate loads and rerenders.

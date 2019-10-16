@@ -60,7 +60,16 @@ describe("@zeus-platform/ad#ZeusRouteResponder", () => {
       );
     });
     expect(getNavigationFacts()).toEqual(
-      expect.objectContaining({ to: null, from: null, navigated: false })
+      expect.objectContaining({
+        to: expect.objectContaining({
+          hash: "",
+          pathname: "/",
+          search: "",
+          state: undefined
+        }),
+        from: {},
+        navigated: false
+      })
     );
 
     // Click link number 1, make sure that it rerenders
@@ -90,7 +99,7 @@ describe("@zeus-platform/ad#ZeusRouteResponder", () => {
       test2.dispatchEvent(new MouseEvent("click", { bubbles: true }));
     });
     expect(getNavigationFacts().to.pathname).toBe("/test2");
-    expect(getNavigationFacts().from.pathname).toBe("/test1");
+    expect(getNavigationFacts().from.pathname).toBe("/test2");
     expect(getNavigationFacts().navigated).toBe(false);
 
     // Click link three, make sure it causes a rerender

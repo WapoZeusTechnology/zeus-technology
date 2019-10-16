@@ -123,6 +123,14 @@ const App = (props) => (
 You may also use this component without the optional `keyValuePairs` property if you
 already have all of your key-value pairs configured within your hosted Zeus library.
 
+## Troubleshooting
+
+The most common problem you may see is that of too many concurrent or repeat bids on the same screen. This is usually caused by the following:
+
+- Use of `React.Component.forceUpdate()` - This circumvents our ability to reduce reloads.
+- Use of higher-order components which trigger re-renders with asynchronous updates.
+- It seems like React Transitions and CSS Transitions can cause some of these issues. If you encounter issues, try disabling these modules.
+
 ## See Also
 
 - [Documentation for react-router-dom](https://reacttraining.com/react-router/web/guides/quick-start)

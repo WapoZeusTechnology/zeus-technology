@@ -83,6 +83,12 @@ export const ZeusRouteResponderImpl = ({
 
     // Update the navigation facts
     setNavigationFacts({ from: lastLocation.current, to: location });
+    if (debug && navigationFacts.navigated) {
+      console.log(
+        "ZEUS DEBUG: ZeusRouteResponder\nNavigated.",
+        navigationFacts
+      );
+    }
 
     // Debug
     debug &&

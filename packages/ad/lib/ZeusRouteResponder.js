@@ -11,8 +11,24 @@ export const routesAreEqual = (a, b) =>
   a.hash === b.hash &&
   a.state === b.state;
 
-const navigationFacts = { to: null, from: null, navigated: false };
+const navigationFacts = {
+  to: null,
+  from: null,
+  navigated: false,
+  lockedElements: {}
+};
 export const getNavigationFacts = () => navigationFacts;
+export const lockZeusElement = name => {
+  const register = navigationFacts.lockedElements;
+
+  if (register[name]) {
+    return false;
+  }
+
+  register[name] = 1;
+
+  return true;
+};
 const setNavigationFacts = ({ from, to }) => {
   // If the routes are equal, we didn't navigate!
   if (from === to || !Object.keys(from).length || routesAreEqual(from, to)) {
@@ -28,7 +44,8 @@ const setNavigationFacts = ({ from, to }) => {
     navigated: true,
     from,
     to,
-    timestamp: new Date().getTime()
+    timestamp: new Date().getTime(),
+    lockedElements: {} // Navigated? Reset the render register
   });
 };
 export let routeResponderReady = false;

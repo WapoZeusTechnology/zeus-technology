@@ -6,7 +6,8 @@ import { getSlotId, zeusNotice, triggerRerender } from "@zeus-technology/util";
 import {
   getNavigationFacts,
   routesAreEqual,
-  routeResponderReady
+  routeResponderReady,
+  lockZeusElement
 } from "./ZeusRouteResponder";
 
 import { ZeusAd } from "./ZeusAd";
@@ -49,13 +50,15 @@ const ZeusAdWithRouterImpl = ({
   useEffect(() => {
     // If we navigated, then we let the caller decide whether or not we rerender.
     const shouldTriggerChange = navigationFacts.navigated
-      ? shouldChangeForRoute(navigationFacts.to, navigationFacts.from)
+      ? shouldChangeForRoute(navigationFacts.to, navigationFacts.from) &&
+        lockZeusElement(useSlotId)
       : false;
     debug &&
       console.debug(
         `ZEUS DEBUG: ZeusAdWithRouter\nConsidering a refresh of ad slot «${useSlotId}» with the following information:`,
         {
           navigationFacts,
+          changeOnNavigate,
           shouldTriggerChange
         }
       );

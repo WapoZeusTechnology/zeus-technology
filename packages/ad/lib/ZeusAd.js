@@ -25,14 +25,14 @@ export class ZeusAd extends React.Component {
     );
   }
   render() {
-    const { slotId, ...props } = this.props;
+    const { slotId, debug, ...props } = this.props;
     const useSlotId = getSlotId(slotId);
-    this.props.debug &&
+    debug &&
       console.log(
         `ZEUS DEBUG: ZeusAd\nRe-rendering component! «${useSlotId}».`,
         this.props
       );
-    return <zeus-ad id={useSlotId} {...props} />;
+    return <zeus-ad id={useSlotId} debug={debug} {...props} />;
   }
 }
 

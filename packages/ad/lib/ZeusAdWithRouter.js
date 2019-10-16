@@ -74,7 +74,7 @@ const ZeusAdWithRouterImpl = ({
     changeOnNavigate
   ]);
 
-  return <ZeusAd slotId={useSlotId} {...props} />;
+  return <ZeusAd slotId={useSlotId} debug={debug} {...props} />;
 };
 
 ZeusAdWithRouterImpl.propTypes = {

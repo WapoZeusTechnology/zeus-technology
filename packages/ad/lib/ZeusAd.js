@@ -17,13 +17,8 @@ export class ZeusAd extends React.Component {
   shouldComponentUpdate(nextProps) {
     this.props.debug &&
       console.log(
-        `ZEUS DEBUG: ZeusAd\nReconsidering whether or not ${this.props.slotId} should be updated.`,
-        { current: this.props, next: nextProps }
+        `ZEUS DEBUG: ZeusAd\nReconsidering whether or not ${this.props.slotId} should be updated.`
       );
-
-    if (nextProps.ignore) {
-      return false;
-    }
     return !(
       nextProps.slotId === this.props.slotId &&
       nextProps.debug === this.props.debug
@@ -43,10 +38,8 @@ export class ZeusAd extends React.Component {
 
 ZeusAd.propTypes = {
   slotId: PropTypes.string.isRequired,
-  debug: PropTypes.bool,
-  ignore: PropTypes.bool
+  debug: PropTypes.bool
 };
 ZeusAd.defaultProps = {
-  debug: false,
-  ignore: false
+  debug: false
 };

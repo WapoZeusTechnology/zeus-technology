@@ -15,8 +15,13 @@ const navigationFacts = { to: null, from: null, navigated: false };
 export const getNavigationFacts = () => navigationFacts;
 const setNavigationFacts = ({ from, to }) => {
   // If the routes are equal, we didn't navigate!
-  if (from === to || routesAreEqual(from, to)) {
-    return Object.assign(navigationFacts, { navigated: false });
+  if (from === to || !Object.keys(from).length || routesAreEqual(from, to)) {
+    return Object.assign(navigationFacts, {
+      navigated: false,
+      from,
+      to,
+      timestamp: new Date().getTime()
+    });
   }
 
   return Object.assign(navigationFacts, {
@@ -36,9 +41,10 @@ export let routeResponderReady = false;
 export const ZeusRouteResponderImpl = ({
   location,
   keyValuePairs = {},
+  debug = false,
   shouldChangeForRoute = () => true
 }) => {
-  const lastLocation = useRef(location);
+  const lastLocation = useRef({});
   const kvpRef = useRef(Object.assign({}, keyValuePairs));
 
   // Warn the user if they gave us an invalid property here.
@@ -48,21 +54,34 @@ export const ZeusRouteResponderImpl = ({
     );
     shouldChangeForRoute = () => true;
   }
-  setNavigationFacts({ from: lastLocation.current, to: location });
   useEffect(() => {
     kvpRef.current = Object.assign({}, keyValuePairs);
     // We need to know whether or not the route changed, and if the caller thinks
     // that it is a change worthy of an update.
-    const shouldTriggerChange = !routesAreEqual(lastLocation.current, location)
-      ? shouldChangeForRoute(location, lastLocation.current)
-      : false;
+    const shouldTriggerChange =
+      Object.keys(lastLocation.current).length &&
+      !routesAreEqual(lastLocation.current, location)
+        ? shouldChangeForRoute(location, lastLocation.current)
+        : false;
+
+    // Update the navigation facts
+    setNavigationFacts({ from: lastLocation.current, to: location });
+
+    // Debug
+    debug &&
+      console.log("ZEUS DEBUG: ZeusRouteResponder\nConsidering KVP update.", {
+        prev: lastLocation.current,
+        location,
+        navigationFacts: getNavigationFacts(),
+        shouldTriggerChange
+      });
     lastLocation.current = location;
 
     // Only change if we're supposed to change for this route.
     if (shouldTriggerChange) {
       triggerKeyValuePairsUpdate(kvpRef.current);
     }
-  }, [shouldChangeForRoute, location, keyValuePairs]);
+  }, [shouldChangeForRoute, location, keyValuePairs, debug]);
 
   routeResponderReady = true;
   return null;

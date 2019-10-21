@@ -18,10 +18,7 @@
   "files": [
     "lib"
   ],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/WapoZeusTechnology/zeus-react-public.git"
-  },
+  "repository": "git@github.com:WapoZeusTechnology/zeus-technology.git",
   "scripts": {
     "build": "BABEL_ENV=build babel . --out-dir dist --source-maps --delete-dir-on-start --config-file ./babel.config.js --no-comments --copy-files",
     "clean": "rm -rf dist/*",
@@ -31,7 +28,6 @@
     "url": "https://github.com/WapoZeusTechnology/zeus-technology/issues"
   },
   "dependencies": {
-    "@storybook/addon-actions": "^5.2.4",
     "@zeus-technology/util": "^1.1.1",
     "prop-types": "^15.7.2",
     "react": "^16.1.0"

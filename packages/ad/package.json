@@ -29,6 +29,7 @@
   },
   "dependencies": {
     "@zeus-technology/util": "^1.1.2",
+    "babel-eslint": "^10.0.3",
     "prop-types": "^15.7.2",
     "react": "^16.1.0"
   },
@@ -37,6 +38,9 @@
   },
   "gitHead": "4969a530fd17a8194300272698f9c6083628c951",
   "devDependencies": {
+    "@types/eventemitter3": "^2.0.2",
+    "@types/jest": "^24.0.19",
+    "@types/node": "^12.11.2",
     "eslint": "^6.5.1",
     "eslint-plugin-react": "^7.16.0",
     "eslint-plugin-react-hooks": "^2.1.2"

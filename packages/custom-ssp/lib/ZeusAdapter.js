@@ -1,72 +1,118 @@
+"use strict";
+
+import { ZeusCommands } from "./ZeusCommands";
 /**
  * The purpose of this class is to implement an Adapter for custom
  */
 class ZeusAdapter {
+  /**
+   * The amount of time, in ms, to wait between queue runs.
+   */
+  static WaitQueueDelay = 50; //ms
+
+  /**
+   * The maximum amount of time to wait for Zeus
+   */
+  static ZeusWaitTimeout = 10000; //ms
+
   /**
    * Internal config
    */
   #config;
 
   /**
-   * The queue of things waiting until Zeus is available.
+   * Is zeus ready?
    */
-  #waitQueue = [];
+  #zeusReady = false;
 
-  constructor(config) {
+  constructor(config = {}) {
     this.#config = config;
-
-    this._waitQueueRunner();
   }
 
   /**
-   * The amount of time to wait between queue runs.
+   * Start the ZeusAdapter
    */
-  static WaitQueueDelay = 50;
+  start() {
+    // Start the queue.
+    return this._waitForZeus()
+      .then(() => (this.#zeusReady = true))
+      .then(() =>
+        globalThis.zeus.on("CUSTOM_BIDDING_START", slots =>
+          this.startBidding(slots)
+        )
+      )
+      .then(() =>
+        // The value exists
+        this.#config.hasOwnProperty("init") &&
+        // It is either a function
+        (typeof this.#config.init === "function" ||
+          // or a Promise
+          this.#config.init instanceof Promise)
+          ? this.runCommand(() => this.#config.init(this))
+          : // If not, just return an empty resolve.
+            Promise.resolve()
+      );
+  }
 
-  /**
-   * Run the wait queue.
-   */
-  _waitQueueRunner() {
-    // If Zeus isn't ready, give it another bit of time.
-    if (!globalThis.hasOwnProperty("zeus")) {
-      setTimeout(this._waitQueueRunner.bind(this), ZeusAdapter.WaitQueueDelay);
-      return;
+  startBidding(slots) {
+    // In the off chance that we have no bidders configured, notify.
+    if (!this.#config.hasOwnProperty("bid")) {
+      const errMsg = "No custom bidders configured.";
+      console.warn(errMsg);
+      globalThis.zeus.emit("CUSTOM_BIDDING_FINISHED", {
+        isSuccess: false,
+        error: errMsg
+      });
+      return Promise.reject(errMsg);
     }
 
-    // Handle the possible race condition that we've got multiple outstanding timeouts.
-    if (!Array.isArray(this.#waitQueue)) return;
-
-    const nextToRun = this.#waitQueue.shift();
-    // If we've run the queue dry, mark the queue as empty
-    if (!nextToRun && this.#waitQueue.length === 0) {
-      this.#waitQueue = false;
-
-      return;
-    }
-
-    // Run the command, and set another timeout.
-    nextToRun && nextToRun();
-    setTimeout(this._waitQueueRunner.bind(this), ZeusAdapter.WaitQueueDelay);
-    return;
+    ZeusCommands.biddingStarted();
+    return this.runCommand(() => this.#config.bid(this, slots))
+      .then(ZeusCommands.biddingSuccess)
+      .catch(ZeusCommands.biddingFail);
   }
 
   /**
-   * A small wrapper to issue commands to Zeus.
+   * Wait for Zeus to be ready.
    */
-  _runInZeus(command) {
-    if (typeof command !== "function") {
+  _waitForZeus() {
+    // TODO: Implement timeout.
+    const isZeusReady = () =>
+      globalThis.hasOwnProperty("zeus") && !!globalThis.zeus;
+    const delay = () =>
+      new Promise(resolve =>
+        setTimeout(() => resolve(), ZeusAdapter.WaitQueueDelay)
+      );
+
+    // Return a promise which resolves once Zeus is ready.
+    return new Promise(async resolve => {
+      while (!isZeusReady()) {
+        await delay();
+      }
+
+      return resolve(globalThis.zeus);
+    });
+  }
+  runCommand(cmd) {
+    if (!this.#zeusReady) {
+      throw new Error("Zeus is not yet ready!");
+    }
+
+    // If we somehow get a Promise, just return it.
+    if (cmd instanceof Promise) {
+      return cmd;
+    }
+
+    // Make sure that we have a Function
+    if (typeof cmd !== "function") {
+      console.warn("Command is not a function!", cmd);
       throw new Error(
         "ZeusAdapter attempted to run a Zeus command that wasn't a function."
       );
     }
 
-    if (Array.isArray(this.#waitQueue)) {
-      this.#waitQueue.push(command);
-      return;
-    }
-
-    command();
-    return;
+    // Coerce it into a promise
+    return Promise.resolve().then(cmd);
   }
 }
 

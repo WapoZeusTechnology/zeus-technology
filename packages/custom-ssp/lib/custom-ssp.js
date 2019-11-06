@@ -1,7 +1,6 @@
 "use strict";
 
-module.exports = customSsp;
+import { ZeusAdapter } from "./ZeusAdapter";
+import { ZeusCommands } from "./ZeusCommands";
 
-function customSsp() {
-  // TODO
-}
+export { ZeusAdapter, ZeusCommands };

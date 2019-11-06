@@ -23,7 +23,7 @@
     "url": "git+https://github.com/WapoZeusTechnology/zeus-technology.git"
   },
   "scripts": {
-    "build": "BABEL_ENV=build babel . --out-dir dist --source-maps --delete-dir-on-start --config-file ./babel.config.js --no-comments --copy-files",
+    "build": "BABEL_ENV=build babel . --out-dir dist --source-maps --delete-dir-on-start --config-file ./babel.config.js --no-comments --copy-files --ignore 'static/*'; browserify ./static/dist-builder.js --standalone ZeusCustom -o ./dist/zeus-adapter.static.js",
     "clean": "rm -rf dist/*",
     "test": "jest"
   },
@@ -31,13 +31,15 @@
     "url": "https://github.com/WapoZeusTechnology/zeus-technology/issues"
   },
   "dependencies": {
-    "babel-eslint": "^10.0.3",
     "eventemitter3": "^4.0.0"
   },
   "devDependencies": {
+    "babel-eslint": "^10.0.3",
+    "@babel/plugin-transform-runtime": "^7.6.2",
     "@babel/plugin-proposal-class-properties": "^7.5.5",
     "@types/eventemitter3": "^2.0.2",
     "@types/jest": "^24.0.19",
-    "@types/node": "^12.11.2"
+    "@types/node": "^12.11.2",
+    "browserify": "^16.5.0"
   }
 }

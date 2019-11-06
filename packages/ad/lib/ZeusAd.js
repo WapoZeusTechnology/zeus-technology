@@ -24,6 +24,7 @@ export class ZeusAd extends React.Component {
       nextProps.debug === this.props.debug
     );
   }
+
   render() {
     const { slotId, debug, ...props } = this.props;
     const useSlotId = getSlotId(slotId);

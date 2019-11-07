@@ -1,7 +1,7 @@
 {
-  "name": "@zeus-technology/custom-ssp",
+  "name": "@zeus-technology/custom",
   "version": "1.1.1",
-  "description": "A simple library to facilitate the inclusion of unsupported SSPs into the Zeus Technology Platform.",
+  "description": "A simple library to facilitate custom enhancements to Zeus",
   "keywords": [
     "zeus",
     "ssp",

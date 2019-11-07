@@ -5,7 +5,7 @@ import Adapter from "enzyme-adapter-react-16";
 Enzyme.configure({ adapter: new Adapter() });
 
 import * as util from "@zeus-technology/util";
-import { ZeusAd } from "../lib/ZeusAd";
+import { ZeusAd } from "@zeus-technology/ad";
 import { ZeusRouteResponder } from "../lib/ZeusRouteResponder";
 import { ZeusAdWithRouter } from "../lib/ZeusAdWithRouter";
 jest.mock("@zeus-technology/util");

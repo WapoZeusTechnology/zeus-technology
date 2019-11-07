@@ -5,7 +5,7 @@ import {
   ZeusAd,
   ZeusAdWithRouter,
   ZeusRouteResponder
-} from "@zeus-technology/ad";
+} from "@zeus-technology/ad-rrd";
 import { HashRouter, Route, Link } from "react-router-dom";
 
 export default {

@@ -10,7 +10,7 @@ import {
   lockZeusElement
 } from "./ZeusRouteResponder";
 
-import { ZeusAd } from "./ZeusAd";
+import { ZeusAd } from "@zeus-technology/ad";
 
 /**
  * This component introduces a `zeus-ad` element to present an ad inventory slot in a manner which responds to your Router.

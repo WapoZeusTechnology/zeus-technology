@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import { linkTo } from "@storybook/addon-links";
 import { zeusLoader } from "@zeus-technology/load";
-import { ZeusRouteResponder, ZeusAdWithRouter } from "@zeus-technology/ad";
+import { ZeusRouteResponder, ZeusAdWithRouter } from "@zeus-technology/ad-rrd";
 import { HashRouter, Route, Link } from "react-router-dom";
 
 export default {

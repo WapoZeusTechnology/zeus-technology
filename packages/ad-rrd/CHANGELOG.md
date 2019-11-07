@@ -60,3 +60,9 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### Fixed
 
 * Fixed issues with residual loads in HOCs causing duplicate loads and rerenders.
+
+## [**1.2.0**] - 2019-11-07
+
+### Changed
+
+* Moved all of the `react-router-dom`-dependent modules into their own package.

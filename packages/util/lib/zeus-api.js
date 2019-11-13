@@ -12,25 +12,31 @@ export const triggerKeyValuePairsUpdate = (kvps = {}) => {
 };
 
 export const forceRefresh = slotIds => {
-  if (Array.isArray(slotIds)) {
-    slotIds.forEach(slotId => {
-      let element = document.getElementById(getSlotId(slotId));
-      element && !!element.render && element.render();
-    });
-  } else {
-    const element = document.getElementById(getSlotId(slotIds));
+  const renderFunc = slotId => {
+    const element = document.getElementById(getSlotId(slotId));
     element && !!element.render && element.render();
+  };
+
+  if (Array.isArray(slotIds)) {
+    slotIds.forEach(renderFunc);
+    return;
   }
+
+  renderFunc(slotIds);
+  return;
 };
 
 export const forceRebuildAndRefresh = slotIds => {
-  if (Array.isArray(slotIds)) {
-    slotIds.forEach(slotId => {
-      let element = document.getElementById(getSlotId(slotId));
-      element && !!element.rerender && element.rerender();
-    });
-  } else {
-    const element = document.getElementById(getSlotId(slotIds));
+  const rebuildFunc = slotId => {
+    const element = document.getElementById(getSlotId(slotId));
     element && !!element.rerender && element.rerender();
+  };
+
+  if (Array.isArray(slotIds)) {
+    slotIds.forEach(rebuildFunc);
+    return;
   }
+
+  rebuildFunc(slotIds);
+  return;
 };

@@ -32,7 +32,7 @@ export class ZeusAd extends React.Component {
         `ZEUS DEBUG: ZeusAd\nRe-rendering component! «${useSlotId}».`,
         this.props
       );
-    return <zeus-ad id={useSlotId} debug={debug} {...props} />;
+    return <zeus-ad class="zeus-ad" id={useSlotId} debug={debug} {...props} />;
   }
 }
 

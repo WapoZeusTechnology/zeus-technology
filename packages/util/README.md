@@ -33,23 +33,23 @@ forceRefresh(ads)
 
 ```
 
-### `forceRebuild()`
+### `forceRebuildAndRefresh()`
 
 This function allows you to force a rebuild of your ad slot and refresh one or more ads. It takes a single parameter, which can either be a `zeus-ad` id, or an array of `zeus-ad` ids.
 
 This function is useful when you have a Single Page Application and you want to rebuild your ad slots when you navigate to a new page, but do not re-render your DOM tree.
 
 ```
-const { forceRebuild } = require('@zeus/util');
+const { forceRebuildAndRefresh } = require('@zeus/util');
 
 # Force rebuild a single ad
-forceRebuild("top_right")
+forceRebuildAndRefresh("top_right")
 
 # Force rebuild a specific list of ads
-forceRebuild(["top_right", "bottom", "inline"])
+forceRebuildAndRefresh(["top_right", "bottom", "inline"])
 
 # force rebuild all zeus ads on the page
 const ads = [...document.getElementsByClassName("zeus-ad")].map(node => node.id)
-forceRebuild(ads)
+forceRebuildAndRefresh(ads)
 
 ```

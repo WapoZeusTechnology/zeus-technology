@@ -27,7 +27,7 @@
   "bugs": {
     "url": "https://github.com/WapoZeusTechnology/zeus-technology/issues"
   },
-  "gitHead": "be1784dbfe830c98bfa2e824ac331ea307ed2ac5",
+  "gitHead": "cc0a52df519984091fa283230a8c1a5b4737c494",
   "devDependencies": {
     "eslint": "^6.5.1",
     "eslint-plugin-react": "^7.16.0",

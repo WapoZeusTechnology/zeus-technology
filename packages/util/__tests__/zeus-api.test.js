@@ -2,7 +2,12 @@ import * as util from "../lib/getSlotId";
 jest.mock("@zeus-technology/util");
 util.getSlotId = jest.fn().mockImplementation(x => `zeus_${x}`);
 
-import { triggerRerender, triggerKeyValuePairsUpdate } from "../lib/zeus-api";
+import {
+  triggerRerender,
+  triggerKeyValuePairsUpdate,
+  forceRefresh,
+  forceRebuildAndRefresh
+} from "../lib/zeus-api";
 
 describe("zeus-api", () => {
   /**
@@ -50,6 +55,89 @@ describe("zeus-api", () => {
     expect(window.zeus.emit.mock.calls).toEqual([
       ["RESET_KEYVALUES", {}],
       ["RESET_KEYVALUES", { a: 1 }]
+    ]);
+  });
+
+  it("#forceRefresh()", () => {
+    const refreshTestElement1 = document.createElement("p");
+    refreshTestElement1.id = "zeus_refresh_test_element_1";
+    refreshTestElement1.render = jest.fn();
+
+    const refreshTestElement2 = document.createElement("p");
+    refreshTestElement2.id = "zeus_refresh_test_element_2";
+    refreshTestElement2.render = jest.fn();
+
+    document.body.appendChild(refreshTestElement1);
+    document.body.appendChild(refreshTestElement2);
+
+    expect(() => forceRefresh("refresh_test_element_1")).not.toThrow();
+    expect(refreshTestElement1.render.mock.calls.length).toBe(1);
+    expect(util.getSlotId.mock.calls.length).toBe(3);
+    expect(util.getSlotId.mock.calls).toEqual([
+      ["test_element"],
+      ["test_element"],
+      ["refresh_test_element_1"]
+    ]);
+
+    expect(() =>
+      forceRefresh(["refresh_test_element_1", "refresh_test_element_2"])
+    ).not.toThrow();
+    expect(refreshTestElement1.render.mock.calls.length).toBe(2);
+    expect(refreshTestElement2.render.mock.calls.length).toBe(1);
+    expect(util.getSlotId.mock.calls.length).toBe(5);
+    expect(util.getSlotId.mock.calls).toEqual([
+      ["test_element"],
+      ["test_element"],
+      ["refresh_test_element_1"],
+      ["refresh_test_element_1"],
+      ["refresh_test_element_2"]
+    ]);
+  });
+
+  it("#forceRebuild()", () => {
+    const rebuildTestElement1 = document.createElement("p");
+    rebuildTestElement1.id = "zeus_rebuild_test_element_1";
+    rebuildTestElement1.rerender = jest.fn();
+
+    const rebuildTestElement2 = document.createElement("p");
+    rebuildTestElement2.id = "zeus_rebuild_test_element_2";
+    rebuildTestElement2.rerender = jest.fn();
+
+    document.body.appendChild(rebuildTestElement1);
+    document.body.appendChild(rebuildTestElement2);
+
+    expect(() =>
+      forceRebuildAndRefresh("rebuild_test_element_1")
+    ).not.toThrow();
+    expect(rebuildTestElement1.rerender.mock.calls.length).toBe(1);
+    expect(util.getSlotId.mock.calls.length).toBe(6);
+    expect(util.getSlotId.mock.calls).toEqual([
+      ["test_element"],
+      ["test_element"],
+      ["refresh_test_element_1"],
+      ["refresh_test_element_1"],
+      ["refresh_test_element_2"],
+      ["rebuild_test_element_1"]
+    ]);
+
+    expect(() =>
+      forceRebuildAndRefresh([
+        "rebuild_test_element_1",
+        "rebuild_test_element_2"
+      ])
+    ).not.toThrow();
+    expect(rebuildTestElement1.rerender.mock.calls.length).toBe(2);
+    expect(rebuildTestElement2.rerender.mock.calls.length).toBe(1);
+    expect(util.getSlotId.mock.calls.length).toBe(8);
+    expect(util.getSlotId.mock.calls).toEqual([
+      ["test_element"],
+      ["test_element"],
+      ["refresh_test_element_1"],
+      ["refresh_test_element_1"],
+      ["refresh_test_element_2"],
+      ["rebuild_test_element_1"],
+      ["rebuild_test_element_1"],
+      ["rebuild_test_element_2"]
     ]);
   });
 });

@@ -6,6 +6,8 @@ React components for Zeus Technology.
 
 ## Building and publishing
 
+**Note:** Be sure to use the version of lerna installed by the package. Do not use a globally installed version of lerna.
+
 To build:
 
 ```sh

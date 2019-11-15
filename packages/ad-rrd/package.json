@@ -1,7 +1,7 @@
 {
   "name": "@zeus-technology/ad-rrd",
   "private": false,
-  "version": "1.2.0",
+  "version": "1.2.2",
   "description": "The Ad slot component for Zeus which uses react-redux-router",
   "author": "Mike Stemle <mike.stemle@washpost.com>",
   "homepage": "https://github.com/WapoZeusTechnology/zeus-technology/blob/master/packages/ad-rrd/README.md",
@@ -28,14 +28,14 @@
     "url": "https://github.com/WapoZeusTechnology/zeus-technology/issues"
   },
   "dependencies": {
-    "@zeus-technology/util": "^1.1.2",
+    "@zeus-technology/util": "^1.2.2",
     "prop-types": "^15.7.2",
     "react": "^16.1.0"
   },
   "peerDependencies": {
     "react-router-dom": "^5.0.1"
   },
-  "gitHead": "4969a530fd17a8194300272698f9c6083628c951",
+  "gitHead": "cc0a52df519984091fa283230a8c1a5b4737c494",
   "devDependencies": {
     "eslint": "^6.5.1",
     "eslint-plugin-react": "^7.16.0",

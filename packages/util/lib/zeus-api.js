@@ -11,6 +11,20 @@ export const triggerKeyValuePairsUpdate = (kvps = {}) => {
   }
 };
 
+let __existingPersonalizedAdPermissionValue = null;
+export const triggerPersonalizedAdPermissionsChange = newValue => {
+  if (newValue === __existingPersonalizedAdPermissionValue) return;
+
+  // Coerce the value into a Boolean if it isn't.
+  __existingPersonalizedAdPermissionValue = !!newValue;
+  // Emit the event.
+  window.hasOwnProperty("zeus") &&
+    zeus.emit(
+      "PERSONALIZED_ADS_PERMISSION",
+      __existingPersonalizedAdPermissionValue
+    );
+};
+
 export const forceRefresh = slotIds => {
   const renderFunc = slotId => {
     const element = document.getElementById(getSlotId(slotId));

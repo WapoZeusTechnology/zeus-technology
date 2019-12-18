@@ -51,7 +51,7 @@ export class ZeusAd extends React.Component {
     debug &&
       console.log(
         `ZEUS DEBUG: ZeusAd\nRe-rendering component! «${useSlotId}».`,
-        this.props
+        JSON.parse(JSON.stringify(this.props))
       );
     return <zeus-ad class="zeus-ad" id={useSlotId} debug={debug} {...props} />;
   }

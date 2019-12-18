@@ -20,10 +20,12 @@ import { ZeusAd } from '@zeus-technology/ad';
 
 const App = (props) => (
   <Fragment>
-    <ZeusAd slotId='ad-slot-name' style={{display:visible?'':'none'}} />
+    <ZeusAd slotId='ad-slot-name' allowPersonalization={true} style={{display:visible?'':'none'}} />
   </Fragment>
 )
 ```
+
+The `allowPersonalization` prop indicates whether or not personalization of ad slots is appropriate. The default value is `true`.
 
 ### `ZeusAdWithRouter`
 

@@ -5,6 +5,7 @@ import { getSlotId } from "./getSlotId";
 import {
   triggerRerender,
   triggerKeyValuePairsUpdate,
+  triggerPersonalizedAdPermissionsChange,
   forceRefresh,
   forceRebuildAndRefresh
 } from "./zeus-api";
@@ -14,6 +15,7 @@ export {
   getSlotId,
   triggerRerender,
   triggerKeyValuePairsUpdate,
+  triggerPersonalizedAdPermissionsChange,
   forceRefresh,
   forceRebuildAndRefresh
 };

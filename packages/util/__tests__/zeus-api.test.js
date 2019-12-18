@@ -5,6 +5,7 @@ util.getSlotId = jest.fn().mockImplementation(x => `zeus_${x}`);
 import {
   triggerRerender,
   triggerKeyValuePairsUpdate,
+  triggerPersonalizedAdPermissionsChange,
   forceRefresh,
   forceRebuildAndRefresh
 } from "../lib/zeus-api";
@@ -56,6 +57,34 @@ describe("zeus-api", () => {
       ["RESET_KEYVALUES", {}],
       ["RESET_KEYVALUES", { a: 1 }]
     ]);
+  });
+
+  /**
+   * Test plan:
+   * 1. Trigger the permissions change with a value of `true`.
+   * 2. Verify that the event is fired with `true`.
+   * 3. Trigger the permissions change with a value of `false`.
+   * 4. Verify that the event is fired with `false`.
+   * 5. Trigger the permissions change again with another value of `false`.
+   * 6. Verify that the event did not get emitted at all.
+   **/
+  it("#triggerPersonalizedAdPermissionsChange", () => {
+    // Stub out zeus...
+    window.zeus = { emit: jest.fn() };
+    expect(() => triggerPersonalizedAdPermissionsChange(true)).not.toThrow();
+    expect(window.zeus.emit).toHaveBeenCalledWith(
+      "PERSONALIZED_ADS_PERMISSION",
+      true
+    );
+    window.zeus.emit.mockClear();
+    expect(() => triggerPersonalizedAdPermissionsChange(false)).not.toThrow();
+    expect(window.zeus.emit).toHaveBeenCalledWith(
+      "PERSONALIZED_ADS_PERMISSION",
+      false
+    );
+    window.zeus.emit.mockClear();
+    expect(() => triggerPersonalizedAdPermissionsChange(false)).not.toThrow();
+    expect(window.zeus.emit).not.toHaveBeenCalled();
   });
 
   it("#forceRefresh()", () => {

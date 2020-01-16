@@ -19,12 +19,7 @@ export const ZeusHooks = {
     // Setup callback when bidding has started
     globalThis.zeus.on("CUSTOM_BIDDING_START", slots => {
       Promise.resolve()
-        .then(() =>
-          userCallback(
-            adapter,
-            slots.map(slot => slot.id)
-          )
-        )
+        .then(() => userCallback(adapter, slots))
         .then(() =>
           globalThis.zeus.emit("CUSTOM_BIDDING_FINISHED", {
             adapterId,

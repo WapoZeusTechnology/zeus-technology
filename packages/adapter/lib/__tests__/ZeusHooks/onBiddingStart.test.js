@@ -45,7 +45,7 @@ describe("ZeusHooks.zeusAdRegistered", () => {
    */
   it("Resolves and notifies zeus when bidding callback is successfull", async () => {
     const adapter = { foo: "bar" };
-    const slots = [{ id: "foo" }, { id: "bar" }];
+    const slots = ["foo", "bar"];
     // Save the adapter ID passed to register custom bidder so we can verify the id passed on
     // CUSTOM_BIDDING_FINSIEHD event back to zeus.
     let adapterId = null;
@@ -77,7 +77,7 @@ describe("ZeusHooks.zeusAdRegistered", () => {
 
     // Verify callbacks were called as expected
     expect(userCallback).toHaveBeenCalledTimes(1);
-    expect(userCallback).toHaveBeenCalledWith(adapter, ["foo", "bar"]);
+    expect(userCallback).toHaveBeenCalledWith(adapter, slots);
     expect(biddingFinishedCallback).toHaveBeenCalledTimes(1);
     expect(biddingFinishedCallback).toHaveBeenCalledWith({
       adapterId,
@@ -102,7 +102,7 @@ describe("ZeusHooks.zeusAdRegistered", () => {
   it("Resolves and notifies zeus when bidding callback is unsuccessful", async () => {
     const adapter = { foo: "bar" };
     const error = new Error("Something happened.");
-    const slots = [{ id: "foo" }, { id: "bar" }];
+    const slots = ["foo", "bar"];
     // Save the adapter ID passed to register custom bidder so we can verify the id passed on
     // CUSTOM_BIDDING_FINSIEHD event back to zeus.
     let adapterId = null;
@@ -134,7 +134,7 @@ describe("ZeusHooks.zeusAdRegistered", () => {
 
     // Verify callbacks were called as expected
     expect(userCallback).toHaveBeenCalledTimes(1);
-    expect(userCallback).toHaveBeenCalledWith(adapter, ["foo", "bar"]);
+    expect(userCallback).toHaveBeenCalledWith(adapter, slots);
     expect(biddingFinishedCallback).toHaveBeenCalledTimes(1);
     expect(biddingFinishedCallback).toHaveBeenCalledWith({
       adapterId,

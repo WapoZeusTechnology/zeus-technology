@@ -51,7 +51,6 @@ export class ZeusAdapter {
       // Promise chain to wait until zeus lib is available then connect all user hooks
       this.#waitForZeus()
         .then(() => (this.#zeusConnected = true))
-        .then(this.#connectCommands)
         .then(this.#connectHooks),
 
       // Rejects after timeout.
@@ -88,7 +87,7 @@ export class ZeusAdapter {
       if (this.#config.hasOwnProperty(hookFunctionName)) {
         const hookCallback = this.#config[hookFunctionName];
         connectHook(this, (...params) =>
-          this.#runCommand(() => hookCallback(...params))
+          this.#runCommand(hookCallback, ...params)
         );
       }
     });
@@ -97,11 +96,11 @@ export class ZeusAdapter {
   #connectCommands = () => {
     Object.entries(ZeusCommands).forEach(([commandName, commandFunction]) => {
       this[commandName] = (...params) =>
-        this.#runCommand(() => commandFunction(...params));
+        this.#runCommand(commandFunction, ...params);
     });
   };
 
-  #runCommand = async cmd => {
+  #runCommand = async (cmd, ...params) => {
     if (!this.#zeusConnected) {
       throw new Error(
         "Zeus is not connected. Either Zeus did not initialize or you may have forgotten to call `adapter.connect()`"
@@ -122,6 +121,6 @@ export class ZeusAdapter {
     }
 
     // Coerce it into a promise
-    return Promise.resolve().then(cmd);
+    return Promise.resolve().then(cmd(...params));
   };
 }

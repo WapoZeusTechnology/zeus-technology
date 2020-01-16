@@ -11,6 +11,13 @@ describe("ZeusHooks.zeusAdRegistered", () => {
     jest.clearAllMocks();
   });
 
+  /**
+   * Registration with zeus
+   *
+   * 1. Listens for events on REGISTER_CUSTOM_BIDDER
+   * 2. Calls onBiddingStart
+   * 3. Verify REGISTER_CUSTOM_BIDDER is emitted with a random id string
+   */
   it("Registers with Zeus", async () => {
     const registerCallback = jest.fn();
     globalThis.zeus.on("REGISTER_CUSTOM_BIDDER", registerCallback);
@@ -38,6 +45,16 @@ describe("ZeusHooks.zeusAdRegistered", () => {
    */
   it("Resolves and notifies zeus when bidding callback is successfull", async () => {
     const adapter = { foo: "bar" };
+    const slots = [{ id: "foo" }, { id: "bar" }];
+    // Save the adapter ID passed to register custom bidder so we can verify the id passed on
+    // CUSTOM_BIDDING_FINSIEHD event back to zeus.
+    let adapterId = null;
+    globalThis.zeus.on(
+      "REGISTER_CUSTOM_BIDDER",
+      obj => (adapterId = obj.adapterId)
+    );
+
+    // Setup callbacks
     const userCallback = jest.fn(() => Promise.resolve());
     let biddingFinishedCallback = null;
     // Creating a promise so we have something to wait for. We need to wait until custom bidding
@@ -45,7 +62,6 @@ describe("ZeusHooks.zeusAdRegistered", () => {
     const biddingFinishedPromise = new Promise(resolve => {
       biddingFinishedCallback = jest.fn(resolve);
     });
-    const slots = [{ id: "foo" }, { id: "bar" }];
     globalThis.zeus.on("CUSTOM_BIDDING_FINISHED", biddingFinishedCallback);
 
     // Setup the hook
@@ -64,7 +80,7 @@ describe("ZeusHooks.zeusAdRegistered", () => {
     expect(userCallback).toHaveBeenCalledWith(adapter, ["foo", "bar"]);
     expect(biddingFinishedCallback).toHaveBeenCalledTimes(1);
     expect(biddingFinishedCallback).toHaveBeenCalledWith({
-      adapterId: expect.any(String),
+      adapterId,
       success: true
     });
   });
@@ -86,6 +102,16 @@ describe("ZeusHooks.zeusAdRegistered", () => {
   it("Resolves and notifies zeus when bidding callback is unsuccessful", async () => {
     const adapter = { foo: "bar" };
     const error = new Error("Something happened.");
+    const slots = [{ id: "foo" }, { id: "bar" }];
+    // Save the adapter ID passed to register custom bidder so we can verify the id passed on
+    // CUSTOM_BIDDING_FINSIEHD event back to zeus.
+    let adapterId = null;
+    globalThis.zeus.on(
+      "REGISTER_CUSTOM_BIDDER",
+      obj => (adapterId = obj.adapterId)
+    );
+
+    // setup callbacks
     const userCallback = jest.fn(() => Promise.reject(error));
     let biddingFinishedCallback = null;
     // Creating a promise so we have something to wait for. We need to wait until custom bidding
@@ -93,7 +119,6 @@ describe("ZeusHooks.zeusAdRegistered", () => {
     const biddingFinishedPromise = new Promise(resolve => {
       biddingFinishedCallback = jest.fn(resolve);
     });
-    const slots = [{ id: "foo" }, { id: "bar" }];
     globalThis.zeus.on("CUSTOM_BIDDING_FINISHED", biddingFinishedCallback);
 
     // Setup the hook
@@ -112,7 +137,7 @@ describe("ZeusHooks.zeusAdRegistered", () => {
     expect(userCallback).toHaveBeenCalledWith(adapter, ["foo", "bar"]);
     expect(biddingFinishedCallback).toHaveBeenCalledTimes(1);
     expect(biddingFinishedCallback).toHaveBeenCalledWith({
-      adapterId: expect.any(String),
+      adapterId,
       success: false,
       error
     });

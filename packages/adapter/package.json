@@ -31,7 +31,8 @@
     "url": "https://github.com/WapoZeusTechnology/zeus-technology/issues"
   },
   "dependencies": {
-    "eventemitter3": "^4.0.0"
+    "eventemitter3": "^4.0.0",
+    "uuid": "^3.3.3"
   },
   "devDependencies": {
     "@babel/plugin-proposal-class-properties": "^7.5.5",

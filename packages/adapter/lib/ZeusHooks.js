@@ -1,3 +1,4 @@
+import uuid from "uuid/v4";
 /**
  * List and description of all hooks that are publically available to the Zeus Adapter. A hook is a
  * callback function that will be called whenever the event happens in the Zeus library. Only hooks
@@ -12,7 +13,7 @@ export const ZeusHooks = {
   },
   onBiddingStart: (adapter, userCallback) => {
     // register with Zeus
-    const adapterId = "random_id";
+    const adapterId = uuid();
     globalThis.zeus.emit("REGISTER_CUSTOM_BIDDER", { adapterId });
 
     // Setup callback when bidding has started

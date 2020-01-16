@@ -1,4 +1,4 @@
-import { ZeusAdapter } from "../ZeusAdapter";
+import { ZeusAdapter } from "../../ZeusAdapter";
 
 describe("ZeusAdapter.constructor()", () => {
   /**

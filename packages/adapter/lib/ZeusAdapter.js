@@ -1,10 +1,11 @@
-"use strict";
-
 import { ZeusCommands } from "./ZeusCommands";
+import { ZeusHooks } from "./ZeusHooks";
+import { delay, timeout } from "./utils";
+
 /**
  * The purpose of this class is to implement an Adapter for custom
  */
-class ZeusAdapter {
+export class ZeusAdapter {
   /**
    * The amount of time, in ms, to wait between queue runs.
    */
@@ -21,81 +22,90 @@ class ZeusAdapter {
   #config;
 
   /**
-   * Is zeus ready?
+   * True when adapter is connected to a zeus instance.
    */
-  #zeusReady = false;
+  #zeusConnected = false;
 
+  /**
+   * Creates the zeus adapter instance and verifies the config is correct. All callbacks that
+   * the user is registering with ZeusAdapter must be placed in the config object.
+   *
+   * @param {object} config The configuration
+   */
   constructor(config = {}) {
     this.#config = config;
+    this.#connectCommands();
+    // TODO verify configuration
   }
 
   /**
-   * Start the ZeusAdapter
+   * Connect the ZeusAdapter to zeus and then attach all the event listener hooks that the user
+   * provided on the config.
+   *
+   * Will throw an error if timeout occurs waiting to connect to zeus.
+   *
+   * @return {Promise} Resolves if connect is successful, rejects if a timeout occurs.
    */
-  start() {
-    // Start the queue.
-    return this._waitForZeus()
-      .then(() => (this.#zeusReady = true))
-      .then(() =>
-        globalThis.zeus.on("CUSTOM_BIDDING_START", slots =>
-          this.startBidding(slots)
-        )
+  connect() {
+    return Promise.race([
+      // Promise chain to wait until zeus lib is available then connect all user hooks
+      this.#waitForZeus()
+        .then(() => (this.#zeusConnected = true))
+        .then(this.#connectCommands)
+        .then(this.#connectHooks),
+
+      // Rejects after timeout.
+      timeout(
+        "Timeout waiting to connect to Zeus.",
+        ZeusAdapter.ZeusWaitTimeout
       )
-      .then(() =>
-        // The value exists
-        this.#config.hasOwnProperty("init") &&
-        // It is either a function
-        (typeof this.#config.init === "function" ||
-          // or a Promise
-          this.#config.init instanceof Promise)
-          ? this.runCommand(() => this.#config.init(this))
-          : // If not, just return an empty resolve.
-            Promise.resolve()
-      );
-  }
-
-  startBidding(slots) {
-    // In the off chance that we have no bidders configured, notify.
-    if (!this.#config.hasOwnProperty("bid")) {
-      const errMsg = "No custom bidders configured.";
-      console.warn(errMsg);
-      globalThis.zeus.emit("CUSTOM_BIDDING_FINISHED", {
-        isSuccess: false,
-        error: errMsg
-      });
-      return Promise.reject(errMsg);
-    }
-
-    ZeusCommands.biddingStarted();
-    return this.runCommand(() => this.#config.bid(this, slots))
-      .then(ZeusCommands.biddingSuccess)
-      .catch(ZeusCommands.biddingFail);
+    ]);
   }
 
   /**
-   * Wait for Zeus to be ready.
+   * Wait for Zeus to be ready. Zeus is ready when we can see zeus on the global object as the last
+   * thing Zeus does while starting up is attach itself to the object.
    */
-  _waitForZeus() {
-    // TODO: Implement timeout.
+  #waitForZeus() {
     const isZeusReady = () =>
       globalThis.hasOwnProperty("zeus") && !!globalThis.zeus;
-    const delay = () =>
-      new Promise(resolve =>
-        setTimeout(() => resolve(), ZeusAdapter.WaitQueueDelay)
-      );
 
     // Return a promise which resolves once Zeus is ready.
     return new Promise(async resolve => {
       while (!isZeusReady()) {
-        await delay();
+        await delay(ZeusAdapter.WaitQueueDelay);
       }
 
       return resolve(globalThis.zeus);
     });
   }
-  runCommand(cmd) {
-    if (!this.#zeusReady) {
-      throw new Error("Zeus is not yet ready!");
+
+  /**
+   * Connect all hooks the user has requested to the zeus events.
+   */
+  #connectHooks = () => {
+    Object.entries(ZeusHooks).forEach(([hookFunctionName, connectHook]) => {
+      if (this.#config.hasOwnProperty(hookFunctionName)) {
+        const hookCallback = this.#config[hookFunctionName];
+        connectHook(this, (...params) =>
+          this.#runCommand(() => hookCallback(...params))
+        );
+      }
+    });
+  };
+
+  #connectCommands = () => {
+    Object.entries(ZeusCommands).forEach(([commandName, commandFunction]) => {
+      this[commandName] = (...params) =>
+        this.#runCommand(() => commandFunction(...params));
+    });
+  };
+
+  #runCommand = async cmd => {
+    if (!this.#zeusConnected) {
+      throw new Error(
+        "Zeus is not connected. Either Zeus did not initialize or you may have forgotten to call `adapter.connect()`"
+      );
     }
 
     // If we somehow get a Promise, just return it.
@@ -113,7 +123,5 @@ class ZeusAdapter {
 
     // Coerce it into a promise
     return Promise.resolve().then(cmd);
-  }
+  };
 }
-
-export { ZeusAdapter };

@@ -56,11 +56,13 @@ const ZeusAdWithRouterImpl = ({
     debug &&
       console.debug(
         `ZEUS DEBUG: ZeusAdWithRouter\nConsidering a refresh of ad slot «${useSlotId}» with the following information:`,
-        {
-          navigationFacts,
-          changeOnNavigate,
-          shouldTriggerChange
-        }
+        JSON.parse(
+          JSON.stringify({
+            navigationFacts,
+            changeOnNavigate,
+            shouldTriggerChange
+          })
+        )
       );
 
     // Only change if we're supposed to change for this route.

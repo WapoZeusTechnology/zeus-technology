@@ -26,3 +26,11 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### Added
 
 - Two new utility functions.
+
+## [**1.3.0**] - 2019-12-18
+
+- Added function `triggerPersonalizedAdPermissionsChange` that notifies Zeus when personalizes ads permission has changed.
+
+## [**1.3.1**] - 2020-01-28
+
+**Note:** Version bump only for package @zeus-platform/util

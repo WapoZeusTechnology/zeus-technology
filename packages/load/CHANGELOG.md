@@ -11,15 +11,23 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Changed
 
-* Added backwards-compatible updates to how the hosted Zeus Library kicks itself off.
+- Added backwards-compatible updates to how the hosted Zeus Library kicks itself off.
 
 ### Fixed
 
-* Tests now run in the top-level directory.
+- Tests now run in the top-level directory.
 
 ## [**1.0.8**] - 2019-09-10
 
 ### Changed
 
-* Newly licensed under the MIT license
-* New public repository
+- Newly licensed under the MIT license
+- New public repository
+
+## [**1.3.0**] - 2019-12-18
+
+**Note:** Version bump only for package @zeus-platform/load
+
+## [**1.3.1**] - 2020-01-28
+
+**Note:** Version bump only for package @zeus-platform/util

@@ -1,9 +1,10 @@
 import React, { Fragment } from "react";
 import { linkTo } from "@storybook/addon-links";
 import { ZeusAd } from "@zeus-technology/ad";
-import { ZeusCommands } from "../packages/custom-ssp/lib/ZeusCommands";
+import { ZeusCommands } from "../packages/adapter/lib/ZeusCommands";
 
-import { ZeusAdapter } from "../packages/custom-ssp/lib/ZeusAdapter";
+import { ZeusAdapter } from "../packages/adapter/lib";
+
 const adapter = new ZeusAdapter({
   init: [
     ZeusCommands.loadScript("//c.amazon-adsystem.com/aax2/apstag.js")

@@ -2,13 +2,7 @@
 const { defaults } = require("jest-config");
 module.exports = {
   testPathIgnorePatterns: ["/node_modules/", "/dist/"],
-  collectCoverageFrom: [
-    "**/*.{js,jsx}",
-    "!**/node_modules/**",
-    "!**/vendor/**",
-    "!**/coverage/**",
-    "!**/*.config.js"
-  ],
+  collectCoverageFrom: ["./lib/**/*.{js,jsx}"],
   collectCoverage: true,
   coverageDirectory: "./coverage"
 };

@@ -29,7 +29,7 @@ export const toStorybook = () => (
   <HashRouter basename="/" hashType="noslash">
     <ZeusRouteResponder />
     <h1>This ad will refresh every time you navigate.</h1>
-    <ZeusAdWithRouter slotId="mob_bigbox" />
+    <ZeusAdWithRouter slotId="mob_bigbox_1" />
     <h1>
       This ad will <em>not refresh</em> every time you navigate.
     </h1>

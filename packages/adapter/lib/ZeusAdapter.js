@@ -120,7 +120,6 @@ export class ZeusAdapter {
       );
     }
 
-    // Coerce it into a promise
-    return Promise.resolve().then(cmd(...params));
+    return cmd(...params);
   };
 }

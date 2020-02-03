@@ -15,10 +15,10 @@ import { ZeusAdapter } from "@zeus-technology/adapter";
  * Below is where you will connect your handlers to the Zeus adapter
  **/
 
-// On initialize, load the script provided by the SSP
 const onInitialize = adapter =>
   Promise.resolve().then(() =>
-    adapter.loadScript("https://foo.com/script.js", "foo-ssp")
+    // custom SSP initilization code
+    window.fooSsp.setPublisherId("1234")
   );
 
 // This hook lets us know that a `ZeusAd` element was created.
@@ -41,6 +41,40 @@ const adapter = new ZeusAdapter({
 adapter.connect();
 ```
 
-### For ES5 with `<script>` tags.
+### For browsers with `<script>` tags.
 
-TODO: COMING SOON!
+```html
+<script src="/dist/zeus-adapter.js" type="application/javascript"></script>
+<script type="application/javascript">
+  /**
+   * Below is where you will connect your handlers to the Zeus adapter
+   **/
+  function onInitialize(adapter) {
+    return Promise.resolve().then(() =>
+      // custom SSP initilization code
+      window.fooSsp.setPublisherId("1234")
+    );
+  }
+
+  // This hook lets us know that a `ZeusAd` element was created.
+  function onZeusAdRegistered(adapter, zeusAdId) {
+    return Promise.resolve().then(() => window.fooSsp.createSlot(zeusAdId));
+  }
+
+  // This hook ties in to the bidding process.
+  function onBidStart(adapter, slotsToBidFor) {
+    return Promise.resolve()
+      .then(() => doCustomBidding(slotsToBidFor))
+      .catch(err => Promise.reject(err));
+  }
+
+  const adapter = new window.ZeusAdapter.ZeusAdapter({
+    onInitialize: onInitialize,
+    onZeusAdRegistered: onZeusAdRegistered,
+    onBidStart: onBidStart
+  });
+
+  // This establishes the connection with Zeus.
+  adapter.connect();
+</script>
+```

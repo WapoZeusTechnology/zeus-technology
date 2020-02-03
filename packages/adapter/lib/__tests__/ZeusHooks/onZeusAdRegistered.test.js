@@ -30,15 +30,13 @@ describe("ZeusHooks.zeusAdRegistered", () => {
     expect(callback).toHaveBeenCalledWith(adapter, "foo");
   });
 
-  it('Calls the provided callback with node ids when "NODE_CONNECTED" is emitted', () => {
+  it("Calls callback with node ids for all connected nodes if connect is called after zeus loads", () => {
     globalThis.zeus = new EventEmitter();
+    globalThis.zeus.adNodes = [{ id: "foo" }];
     const adapter = { runCommand: jest.fn(cmd => cmd()) };
     const callback = jest.fn();
 
     ZeusHooks.onZeusAdRegistered(adapter, callback);
-
-    globalThis.zeus.emit("NODE_CONNECTED", { id: "foo" });
-
     expect(callback).toHaveBeenCalledWith(adapter, "foo");
   });
 });

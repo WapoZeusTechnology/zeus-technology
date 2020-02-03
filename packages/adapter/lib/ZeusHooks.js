@@ -7,9 +7,17 @@ import uuid from "uuid/v4";
 export const ZeusHooks = {
   onInitialize: (adapter, userCallback) => userCallback(adapter),
   onZeusAdRegistered: (adapter, userCallback) => {
+    // Register for notices on nodes connected
     globalThis.zeus.on("NODE_CONNECTED", node => {
       return userCallback(adapter, node.id);
     });
+
+    // For all nodes already connected, call the callback
+    if (Array.isArray(globalThis.zeus.adNodes)) {
+      globalThis.zeus.adNodes.forEach(node => {
+        userCallback(adapter, node.id);
+      });
+    }
   },
   onBiddingStart: (adapter, userCallback) => {
     // register with Zeus

@@ -74,31 +74,4 @@ describe("ZeusAdapter.connect()", () => {
     expect(onInitialize).toHaveBeenCalled();
     expect(onInitialize).toHaveBeenCalledWith(adapter);
   });
-
-  /**
-   * Test plan:
-   * 1. Add a div with ID so loadScript will immediately resolve when checking for script load
-   * 2. Don't call connect
-   * 3. Verify commands aren't available yet since zeus isn't connected and throws error
-   * 4. Connect to zeus
-   * 5. Verify we can now run the command
-   */
-  it("commands are not available on adapter until connected", async () => {
-    const adapter = new ZeusAdapter();
-
-    // Add a <div id="foo"> for loadScript to "load"
-    const el = document.createElement("div");
-    el.setAttribute("id", "foo");
-    document.getElementsByTagName("body")[0].appendChild(el);
-
-    // Call before connect and expect an error
-    await expect(adapter.loadScript("url", "foo")).rejects.toEqual(
-      new Error(
-        "Zeus is not connected. Either Zeus did not initialize or you may have forgotten to call `adapter.connect()`"
-      )
-    );
-    await adapter.connect();
-    // call after connect and expect resolve!
-    await expect(adapter.loadScript("url", "foo")).resolves.toEqual();
-  });
 });

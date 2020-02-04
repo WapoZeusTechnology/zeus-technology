@@ -3,7 +3,7 @@ import { ZeusHooks } from "./ZeusHooks";
 import { delay, timeout } from "./utils";
 
 /**
- * The purpose of this class is to implement an Adapter for custom
+ * The purpose of this class is to implement an Adapter for custom integrations with Zeus.
  */
 export class ZeusAdapter {
   /**

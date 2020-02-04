@@ -22,13 +22,13 @@ The `ZeusAdapter` operates by collecting hooks for specific lifecycle events, an
 
 #### `onInitialization(adapter: ZeusAdapter): Promise<any>`
 
-This hook is called after Zeus is connected and has initialized. Before this hook is called, you are not yet guaranteed to have a functioning Zeus setup in memory. In this function, use the `ZeusAdapter.prototype.loadScript(): Promise<any>` method to load any necessary scripts.
+This hook is called after Zeus is connected and has initialized. Before this hook is called, you are not yet guaranteed to have a functioning Zeus setup in memory.
 
 When returning from this function, be sure to return a promise which you resolve. If you do not, it will likely result in race conditions within either your integration, or Zeus itself.
 
 ```js
 const onInitialization = adapter =>
-  Promise.resolve().then(() => adapter.loadScript);
+  Promise.resolve().then(() => customSSP.init());
 ```
 
 #### `onZeusAdRegistered(adapter: ZeusAdapter, zeusAdId: string): Promise<any>`

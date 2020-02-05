@@ -114,12 +114,19 @@ export class ZeusAdapter {
 
     // Make sure that we have a Function
     if (typeof cmd !== "function") {
-      console.warn("Command is not a function!", cmd);
-      throw new Error(
-        "ZeusAdapter attempted to run a Zeus command that wasn't a function."
-      );
+      const msg = `[ZeusAdapter] Hook callback must be a function. Instead received [${typeof cmd}].`;
+      console.warn(msg);
+      throw new Error(msg);
     }
 
-    return cmd(...params);
+    const ret = cmd(...params);
+    if (!(ret instanceof Promise)) {
+      console.warn(
+        `[ZeusAdapter] Hook callback must return a Promise. Instead received [${typeof ret}]. Please verify any callbacks supplied to the ZeusAdapter constructor return a Promise.`
+      );
+      // Coerce it into a promise.
+      return Promise.resolve().then(ret);
+    }
+    return ret;
   };
 }

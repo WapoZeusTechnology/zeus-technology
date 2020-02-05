@@ -11,7 +11,7 @@ describe("ZeusAdapter.connect()", () => {
   });
 
   it("calls onInitialize hook on connect", async () => {
-    const onInitialize = jest.fn();
+    const onInitialize = jest.fn(() => Promise.resolve());
     const adapter = new ZeusAdapter({
       onInitialize
     });
@@ -59,7 +59,7 @@ describe("ZeusAdapter.connect()", () => {
     delete globalThis.zeus;
 
     let isPending = true;
-    const onInitialize = jest.fn();
+    const onInitialize = jest.fn(() => Promise.resolve());
     const adapter = new ZeusAdapter({ onInitialize });
 
     const promise = adapter.connect().finally(() => (isPending = false));

@@ -39,5 +39,8 @@
     "eslint-plugin-react": "^7.16.0",
     "eslint-plugin-react-hooks": "^2.1.2",
     "react-test-renderer": "^16.10.2"
+  },
+  "dependencies": {
+    "babel-eslint": "^10.0.3"
   }
 }

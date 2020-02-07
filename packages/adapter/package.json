@@ -15,6 +15,10 @@
     "lib": "lib",
     "test": "__tests__"
   },
+  "publishConfig": {
+    "directory": "dist",
+    "access": "public"
+  },
   "files": [
     "lib"
   ],
@@ -44,5 +48,6 @@
     "babel-eslint": "^10.0.3",
     "browserify": "^16.5.0",
     "terser": "^4.6.2"
-  }
+  },
+  "gitHead": "45f45a9c544b39374dfd1d729394f96c13963697"
 }

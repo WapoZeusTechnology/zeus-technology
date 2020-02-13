@@ -6,6 +6,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 
 ---
 
-## [**1.4.0**] - 2020-02-XX
+## [**1.4.0**] - 2020-02-13
 
 - Added ZeusAdapter and the new package `@zeus-technology/adapter`

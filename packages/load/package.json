@@ -1,7 +1,7 @@
 {
   "name": "@zeus-technology/load",
   "private": false,
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "The loader for Zeus.",
   "author": "Mike Stemle <mike.stemle@washpost.com>",
   "homepage": "https://github.com/WapoZeusTechnology/zeus-technology/blob/master/packages/load/README.md",
@@ -44,5 +44,5 @@
     "eslint-plugin-react-hooks": "^2.1.2",
     "react-test-renderer": "^16.10.2"
   },
-  "gitHead": "45f45a9c544b39374dfd1d729394f96c13963697"
+  "gitHead": "12afb00e15fcf6c56675353c65ad283696227959"
 }

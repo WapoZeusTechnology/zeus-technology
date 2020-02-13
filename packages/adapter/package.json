@@ -1,6 +1,6 @@
 {
   "name": "@zeus-technology/adapter",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "A simple library to facilitate custom enhancements to Zeus",
   "keywords": [
     "zeus",
@@ -49,5 +49,5 @@
     "browserify": "^16.5.0",
     "terser": "^4.6.2"
   },
-  "gitHead": "45f45a9c544b39374dfd1d729394f96c13963697"
+  "gitHead": "12afb00e15fcf6c56675353c65ad283696227959"
 }

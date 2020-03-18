@@ -65,7 +65,7 @@ export class ZeusAdapter {
    * Wait for Zeus to be ready. Zeus is ready when we can see zeus on the global object as the last
    * thing Zeus does while starting up is attach itself to the object.
    */
-  #waitForZeus() {
+  #waitForZeus = () => {
     const isZeusReady = () =>
       globalThis.hasOwnProperty("zeus") && !!globalThis.zeus;
 
@@ -77,7 +77,7 @@ export class ZeusAdapter {
 
       return resolve(globalThis.zeus);
     });
-  }
+  };
 
   /**
    * Connect all hooks the user has requested to the zeus events.

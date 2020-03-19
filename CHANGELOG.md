@@ -7,10 +7,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **Note:** Version bump only for package zeus-technology
 
-
-
-
-
 # 1.0.0 (2019-08-30)
 
 **Note:** Version bump only for package zeus-react-public
@@ -19,22 +15,22 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Changed
 
-* Newly licensed under the MIT license
-* New public repository
+- Newly licensed under the MIT license
+- New public repository
 
 ## [**1.0.9**] - 2019-09-23
 
 ### Added
 
-* You can now use [Storybook](https://storybook.js.org) to view how these components work. Use `yarn run storybook` to view the Storybook for this monorepo.
+- You can now use [Storybook](https://storybook.js.org) to view how these components work. Use `yarn run storybook` to view the Storybook for this monorepo.
 
 ## [**1.0.10**] - 2019-10-04
 
 ### Added
 
-* Travis-CI support!
-* Lots of test coverage.
+- Travis-CI support!
+- Lots of test coverage.
 
 ### Changed
 
-* Cleaned up a bunch of dependency issues.
+- Cleaned up a bunch of dependency issues.

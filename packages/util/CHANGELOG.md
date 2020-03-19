@@ -7,10 +7,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **Note:** Version bump only for package @zeus-technology/util
 
-
-
-
-
 # 1.0.0 (2019-08-30)
 
 **Note:** Version bump only for package @zeus-platform/util
@@ -44,5 +40,9 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 **Note:** Version bump only for package @zeus-technology/util
 
 ## [**1.4.0**] - 2020-02-13
+
+**Note:** Version bump only for package @zeus-technology/util
+
+## [**1.4.2**] - 2020-03-19
 
 **Note:** Version bump only for package @zeus-technology/util

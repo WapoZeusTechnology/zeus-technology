@@ -65,9 +65,8 @@ export class ZeusAdapter {
    * Wait for Zeus to be ready. Zeus is ready when we can see zeus on the global object as the last
    * thing Zeus does while starting up is attach itself to the object.
    */
-  #waitForZeus() {
-    const isZeusReady = () =>
-      globalThis.hasOwnProperty("zeus") && !!globalThis.zeus;
+  #waitForZeus = () => {
+    const isZeusReady = () => window.hasOwnProperty("zeus") && !!window.zeus;
 
     // Return a promise which resolves once Zeus is ready.
     return new Promise(async resolve => {
@@ -75,9 +74,9 @@ export class ZeusAdapter {
         await delay(ZeusAdapter.WaitQueueDelay);
       }
 
-      return resolve(globalThis.zeus);
+      return resolve(window.zeus);
     });
-  }
+  };
 
   /**
    * Connect all hooks the user has requested to the zeus events.

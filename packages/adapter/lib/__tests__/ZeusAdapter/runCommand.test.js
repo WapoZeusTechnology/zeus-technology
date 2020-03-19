@@ -28,7 +28,7 @@ describe("ZeusAdapter.#runCommand()", () => {
    * 3. Verify that console.warn was called with the correct warning message
    */
   it("Warns the user if the user callback for a hook does not return a promise", async () => {
-    globalThis.zeus = new EventEmitter();
+    window.zeus = new EventEmitter();
     const onInitializeCallback = jest.fn(() => ({}));
     const adapter = new ZeusAdapter({
       onInitialize: onInitializeCallback
@@ -51,7 +51,7 @@ describe("ZeusAdapter.#runCommand()", () => {
    * 3. Verify that console.warn was called with the correct warning message
    */
   it("Warns the user if the user callback for a hook is not a function", async () => {
-    globalThis.zeus = new EventEmitter();
+    window.zeus = new EventEmitter();
     const onInitializeCallback = {};
     const adapter = new ZeusAdapter({
       onInitialize: onInitializeCallback
@@ -75,7 +75,7 @@ describe("ZeusAdapter.#runCommand()", () => {
    * 3. Verify no console.warns were called.
    */
   it("Just returns the user callback if it is a promise and not a function", async () => {
-    globalThis.zeus = new EventEmitter();
+    window.zeus = new EventEmitter();
     const onInitializeCallback = Promise.resolve();
     const adapter = new ZeusAdapter({
       onInitialize: onInitializeCallback

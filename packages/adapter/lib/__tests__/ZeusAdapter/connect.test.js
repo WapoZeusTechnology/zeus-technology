@@ -3,9 +3,9 @@ import { delay } from "../../utils";
 import EventEmitter from "eventemitter3";
 
 describe("ZeusAdapter.connect()", () => {
-  beforeEach(() => (globalThis.zeus = new EventEmitter()));
+  beforeEach(() => (window.zeus = new EventEmitter()));
   afterEach(() => {
-    delete globalThis.zeus;
+    delete window.zeus;
     jest.clearAllMocks();
     jest.useRealTimers();
   });
@@ -24,7 +24,7 @@ describe("ZeusAdapter.connect()", () => {
 
   it("throws error after timeout if Zeus isn't initialized", async () => {
     // Remove zeus so connect fails
-    delete globalThis.zeus;
+    delete window.zeus;
 
     // Use fake timers so we wont have to wait the full 10 seconds to timeout
     jest.useFakeTimers();
@@ -51,12 +51,12 @@ describe("ZeusAdapter.connect()", () => {
    * 1. Don't define zeus yet
    * 2. Start ZeusAdapter
    * 3. Verify that it has not yet been run.
-   * 4. Now, define Zeus on the globalThis scope.
+   * 4. Now, define Zeus on the window scope.
    * 5. Now verify that the command has been run.
    */
   it("waits for zeus to be initialized when it's not available on connect", async () => {
     // Remove zeus so connect fails
-    delete globalThis.zeus;
+    delete window.zeus;
 
     let isPending = true;
     const onInitialize = jest.fn(() => Promise.resolve());
@@ -67,7 +67,7 @@ describe("ZeusAdapter.connect()", () => {
     expect(onInitialize).not.toHaveBeenCalled();
     expect(isPending).toEqual(true);
 
-    globalThis.zeus = new EventEmitter();
+    window.zeus = new EventEmitter();
 
     await promise; // let the promise finish
 

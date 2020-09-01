@@ -27,7 +27,7 @@ jobs:
       - name: Setting up NPM Credentials
         env:
           NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
-        run: yarn patch:npmrc
+        run: echo "//registry.npmjs.org/:_authToken=${NPM_AUTH_TOKEN}" >.npmrc
       - run: yarn
       - run: yarn lerna run build
       - name: Publish

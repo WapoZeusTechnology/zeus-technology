@@ -1,0 +1,45 @@
+name: Release CI
+on:
+  release:
+    types: [published]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [14.x]
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - uses: actions/cache@v2
+        with:
+          path: |
+            **/node_modules
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn--
+      - name: Setting up NPM Credentials
+        env:
+          NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+        run: yarn patch:npmrc
+      - run: yarn
+      - run: yarn lerna run build
+      - name: Publish
+        run: yarn lerna publish from-git -y
+      - name: Cleaning up
+        run: rm -f .npmrc
+      - name: Upload ZeusAdapter Release Asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ github.event.release.upload_url}}
+          asset_path: ./packages/adapter/dist/zeus-adapter.js
+          asset_name: zeus-adapter.js
+          asset_content_type: application/zip

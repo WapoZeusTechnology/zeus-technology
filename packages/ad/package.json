@@ -32,7 +32,7 @@
     "prop-types": "^15.7.2",
     "react": "^16.1.0"
   },
-  "gitHead": "31481e76bf83ab0864e10116162f189f8059b88f",
+  "gitHead": "874b221172bd0b5ad1210fd081c18d3866fff73c",
   "devDependencies": {
     "@babel/plugin-transform-runtime": "^7.6.2",
     "@types/eventemitter3": "^2.0.2",

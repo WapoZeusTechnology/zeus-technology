@@ -35,6 +35,7 @@
     "url": "https://github.com/WapoZeusTechnology/zeus-technology/issues"
   },
   "dependencies": {
+    "@babel/runtime": "^7.11.2",
     "eventemitter3": "^4.0.0",
     "uuid": "^3.3.3"
   },
@@ -49,5 +50,5 @@
     "browserify": "^16.5.0",
     "terser": "^4.6.2"
   },
-  "gitHead": "31481e76bf83ab0864e10116162f189f8059b88f"
+  "gitHead": "874b221172bd0b5ad1210fd081c18d3866fff73c"
 }

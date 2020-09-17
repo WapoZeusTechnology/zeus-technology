@@ -1,6 +1,6 @@
 # `@zeus-technology/ad`
 
-[![Build Status](https://travis-ci.org/WapoZeusTechnology/zeus-technology.svg?branch=master)](https://travis-ci.org/WapoZeusTechnology/zeus-technology)
+[![Build Status](https://travis-ci.org/WapoZeusTechnology/zeus-technology.svg?branch=main)](https://travis-ci.org/WapoZeusTechnology/zeus-technology)
 
 The purpose of the `ZeusAd` component is to embed a Zeus-managed advertisement into a React app.
 

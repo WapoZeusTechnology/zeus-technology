@@ -1,6 +1,6 @@
 # `@zeus-technology/ad-rrd`
 
-[![Build Status](https://travis-ci.org/WapoZeusTechnology/zeus-technology.svg?branch=master)](https://travis-ci.org/WapoZeusTechnology/zeus-technology)
+[![Build Status](https://travis-ci.org/WapoZeusTechnology/zeus-technology.svg?branch=main)](https://travis-ci.org/WapoZeusTechnology/zeus-technology)
 
 The purpose of the `ZeusAd` component is to embed a Zeus-managed advertisement into a React app.
 
@@ -33,7 +33,7 @@ If you're using `react-router-dom` and you would like to have your ads
 refresh when your route changes, try this. With this module, your Zeus
 ad slot can re-render (not refresh) with every change of the route.
 
-*NOTE*: You must have a `ZeusRouteResponder` component inside of your
+_NOTE_: You must have a `ZeusRouteResponder` component inside of your
 `Router` in order to use `ZeusAdWithRouter`. It is recommended that you
 add this as the first child passed to the `Router` instance.
 

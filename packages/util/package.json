@@ -4,7 +4,7 @@
   "version": "1.4.3",
   "description": "Various utility components for Zeus React components.",
   "author": "Mike Stemle <mike.stemle@washpost.com>",
-  "homepage": "https://github.com/WapoZeusTechnology/zeus-technology/blob/master/packages/util/README.md",
+  "homepage": "https://github.com/WapoZeusTechnology/zeus-technology/blob/main/packages/util/README.md",
   "license": "MIT",
   "main": "lib/index.js",
   "publishConfig": {

@@ -42,8 +42,12 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [**1.4.2**] - 2020-03-19
 
-**Note:** Version bump only for package @zeus-technology/util
+**Note:** Version bump only for package @zeus-technology/load
 
 ## [**1.4.3**] - 2020-09-02
 
-**Note:** Version bump only for package @zeus-technology/util
+**Note:** Version bump only for package @zeus-technology/load
+
+## [**1.4.4**] - 2020-11-17
+
+**Note:** Version bump only for package @zeus-technology/load

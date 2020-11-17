@@ -14,4 +14,7 @@ if (!Object.entries) {
   };
 }
 
-export { ZeusAdapter } from "./ZeusAdapter";
+import { ZeusAdapter } from "./ZeusAdapter";
+
+export default ZeusAdapter;
+export { ZeusAdapter };

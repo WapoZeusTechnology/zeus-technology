@@ -8,8 +8,9 @@ module.exports = {
     [
       "@babel/plugin-transform-runtime",
       {
-        regenerator: true
-      }
-    ]
-  ]
+        regenerator: true,
+      },
+    ],
+  ],
+  ignore: ["node_modules"],
 };

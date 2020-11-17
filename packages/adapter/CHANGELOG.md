@@ -23,6 +23,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 
 - Fixed some issues with ZeusAdapter and IE 11
 
-## [**1.4.3**] - 2020-0902-
+## [**1.4.3**] - 2020-09-02
 
 - Added @babel/runtime as a dependency for customers using npm version of the adapter.
+
+## [**1.4.4**] - 2020-11-17
+
+- Fixed build issue causing runtime failures for browser builds and build failures for npm .

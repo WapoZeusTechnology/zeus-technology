@@ -66,7 +66,7 @@ export class ZeusAdapter {
    * thing Zeus does while starting up is attach itself to the object.
    */
   #waitForZeus = () => {
-    const isZeusReady = () => window.hasOwnProperty("zeus") && !!window.zeus;
+    const isZeusReady = () => window.hasOwnProperty("zeus") && !!window.zeus && window.zeus.name === "zeus";
 
     // Return a promise which resolves once Zeus is ready.
     return new Promise(async resolve => {

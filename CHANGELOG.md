@@ -3,6 +3,9 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.0](https://github.com/WapoZeusTechnology/zeus-technology/compare/v1.4.4...v1.5.0) (2020-11-17)
+
+- Fix for adapter package checking for Zeus exist
 ## [1.4.4](https://github.com/WapoZeusTechnology/zeus-technology/compare/v1.4.2...v1.4.4) (2020-11-17)
 
 - Fix for adapter package

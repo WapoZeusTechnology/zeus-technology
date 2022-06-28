@@ -1,6 +1,6 @@
 {
   "name": "@zeus-technology/adapter",
-  "version": "1.5.1",
+  "version": "1.5.0",
   "description": "A simple library to facilitate custom enhancements to Zeus",
   "keywords": [
     "zeus",

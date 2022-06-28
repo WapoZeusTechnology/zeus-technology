@@ -29,6 +29,7 @@ describe("ZeusAdapter.#runCommand()", () => {
    */
   it("Warns the user if the user callback for a hook does not return a promise", async () => {
     window.zeus = new EventEmitter();
+    window.zeus.name = "zeus"
     const onInitializeCallback = jest.fn(() => ({}));
     const adapter = new ZeusAdapter({
       onInitialize: onInitializeCallback
@@ -52,6 +53,7 @@ describe("ZeusAdapter.#runCommand()", () => {
    */
   it("Warns the user if the user callback for a hook is not a function", async () => {
     window.zeus = new EventEmitter();
+    window.zeus.name = "zeus"
     const onInitializeCallback = {};
     const adapter = new ZeusAdapter({
       onInitialize: onInitializeCallback
@@ -76,6 +78,7 @@ describe("ZeusAdapter.#runCommand()", () => {
    */
   it("Just returns the user callback if it is a promise and not a function", async () => {
     window.zeus = new EventEmitter();
+    window.zeus.name = "zeus"
     const onInitializeCallback = Promise.resolve();
     const adapter = new ZeusAdapter({
       onInitialize: onInitializeCallback

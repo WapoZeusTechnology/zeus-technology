@@ -3,7 +3,10 @@ import { delay } from "../../utils";
 import EventEmitter from "eventemitter3";
 
 describe("ZeusAdapter.connect()", () => {
-  beforeEach(() => (window.zeus = new EventEmitter()));
+  beforeEach(() => {
+    window.zeus = new EventEmitter()
+    window.zeus.name = "zeus"
+  });
   afterEach(() => {
     delete window.zeus;
     jest.clearAllMocks();
@@ -68,6 +71,7 @@ describe("ZeusAdapter.connect()", () => {
     expect(isPending).toEqual(true);
 
     window.zeus = new EventEmitter();
+    window.zeus.name = "zeus"
 
     await promise; // let the promise finish
 

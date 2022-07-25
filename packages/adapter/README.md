@@ -43,7 +43,7 @@ This function should return a `Promise` which resolves when it has finished. Ple
 
 _Note:_ If you are using ReactJS, and informing a third party of the ad slot creation is important, consider using ReactJS lifecycle hooks and not this library to perform that notification. There is no guaranteed relationship between the execution time on this function and that of ReactJS components.
 
-#### `onBidStart(adapter: ZeusAdapter, slots: Array<string>): Promise<any>`
+#### `onBiddingStart(adapter: ZeusAdapter, slots: Array<string>): Promise<any>`
 
 This hook is fired immediately after bidding has _started_. When bidding starts, this hook will be fired, and if this hook wishes to contribute to the bidding outcomes then it must complete within the timeout period (configured within the Zeus configuration) in order to be counted.
 
@@ -74,7 +74,7 @@ This method takes no arguments, and returns a `Promise` which is resolved when t
 ### Ad Slot Hooks
 
 - `onZeusAdRegistered()` - This event is fired immediately after the `<zeus-ad />` tag is created in the DOM. _Note:_ this may fire before any ReactJS components have finished. If you're using ReactJS consider using the ReactJS components, instead of this hook, to register the events.
-- `onBidStart()` - This event is fired when the bidding cycle has begun. It will always be given a list of ad slot IDs which have previously been passed to `onZeusAdRegistered()`.
+- `onBiddingStart()` - This event is fired when the bidding cycle has begun. It will always be given a list of ad slot IDs which have previously been passed to `onZeusAdRegistered()`.
 
 ## Example
 
@@ -109,7 +109,7 @@ const onZeusAdRegistered = (adapter, zeusAdId) =>
   Promise.resolve().then(() => window.fooSsp.createSlot(zeusAdId));
 
 // This hook ties in to the bidding process.
-const onBidStart = (adapter, slotsToBidFor) =>
+const onBiddingStart = (adapter, slotsToBidFor) =>
   Promise.resolve()
     .then(() => doCustomBidding(slotsToBidFor))
     .catch(err => Promise.reject(err));
@@ -117,7 +117,7 @@ const onBidStart = (adapter, slotsToBidFor) =>
 const adapter = new ZeusAdapter({
   onInitialize,
   onZeusAdRegistered,
-  onBidStart
+  onBiddingStart
 });
 
 // This establishes the connection with Zeus.
@@ -139,13 +139,13 @@ const onInitialize => adapter => Promise.resolve()
 const onZeusAdRegistered = (adapter, zeusAdId) => Promise.resolve()
   .then(() => metrics.log(`Ad slot created: ${zeusAdId}`))
 
-const onBidStart = (adapter, slots) => Promise.resolve()
+const onBiddingStart = (adapter, slots) => Promise.resolve()
   .then(() => metrics.log(`Slots up for bidding: ${slots.join(', ')}`))
 
 // Just like with an SSP, you would then create the ZeusAdapter
 // instance, and then connect it.
 const adapter = new ZeusAdapter({
-  onInitialize, onZeusAdRegistered, onBidStart
+  onInitialize, onZeusAdRegistered, onBiddingStart
 });
 adapter.connect();
 ```
@@ -174,7 +174,7 @@ from the window object `window.ZeusAdapter.ZeusAdapter`:
   }
 
   // This hook ties in to the bidding process.
-  function onBidStart(adapter, slotsToBidFor) {
+  function onBiddingStart(adapter, slotsToBidFor) {
     return Promise.resolve()
       .then(() => doCustomBidding(slotsToBidFor))
       .catch(err => Promise.reject(err));
@@ -183,7 +183,7 @@ from the window object `window.ZeusAdapter.ZeusAdapter`:
   const adapter = new window.ZeusAdapter.ZeusAdapter({
     onInitialize: onInitialize,
     onZeusAdRegistered: onZeusAdRegistered,
-    onBidStart: onBidStart
+    onBiddingStart: onBiddingStart
   });
 
   // This establishes the connection with Zeus.

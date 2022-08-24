@@ -42,10 +42,8 @@ lerna version major
 
 To publish:
 
-```sh
-# To redo the same version (in the event of a failed publish)
-lerna publish from-package
-```
+After updating the version and merging the PR, create a new release in Github and add a changelog for this new version. Once the release is published a GitHub action will run automatically that will release the changes to npm on the new version. See: https://github.com/WapoZeusTechnology/zeus-technology/actions/workflows/release.yml
+
 
 ## Troubleshooting
 

@@ -1,4 +1,6 @@
-# zeus-technology
+# DEPRECATED: zeus-technology
+
+_**This repository and it's packages are no longer maintained and supported.**_
 
 [![Build Status](https://travis-ci.org/WapoZeusTechnology/zeus-technology.svg?branch=main)](https://travis-ci.org/WapoZeusTechnology/zeus-technology)
 
